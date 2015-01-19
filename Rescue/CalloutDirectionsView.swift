@@ -20,7 +20,7 @@ class CalloutDirectionsView: UIView{
     
     func instanceFromNib() -> UIView {
         var view = UINib(nibName: "CalloutDirectionsView", bundle: nil).instantiateWithOwner(self, options: nil)[0] as UIView
-        label.text = "123"
+      //  label.text = "123"
         return view
     }
     
