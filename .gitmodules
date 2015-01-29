@@ -1,0 +1,15 @@
+[submodule "AFNetworking"]
+	path = AFNetworking
+	url = git://github.com/AFNetworking/AFNetworking.git
+[submodule "Submodules/AFNetworking"]
+	path = Submodules/AFNetworking
+	url = git://github.com/AFNetworking/AFNetworking.git
+[submodule "Submodules/SDURLCache"]
+	path = Submodules/SDURLCache
+	url = git://github.com/rs/SDURLCache.git
+[submodule "Submodules/IGFormViewController"]
+	path = Submodules/IGFormViewController
+	url = git://github.com/randomsequence/IGFormViewController.git
+[submodule "Submodules/TUSafariActivity"]
+	path = Submodules/TUSafariActivity
+	url = git://github.com/davbeck/TUSafariActivity.git

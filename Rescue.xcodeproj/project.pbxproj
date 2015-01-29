@@ -13,6 +13,7 @@
 		727159D11A79D22300DC220A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 727159D01A79D22300DC220A /* Images.xcassets */; };
 		727159D41A79D22300DC220A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 727159D21A79D22300DC220A /* LaunchScreen.xib */; };
 		727159E01A79D22300DC220A /* RescueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727159DF1A79D22300DC220A /* RescueTests.swift */; };
+		72E52DD81A79FE0E001D89D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		727159D91A79D22300DC220A /* RescueTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RescueTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		727159DE1A79D22300DC220A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		727159DF1A79D22300DC220A /* RescueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueTests.swift; sourceTree = "<group>"; };
+		72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,8 @@
 		727159C61A79D22200DC220A /* Rescue */ = {
 			isa = PBXGroup;
 			children = (
+				72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */,
+				72E52DD61A79FE00001D89D9 /* Utility */,
 				727159C91A79D22300DC220A /* AppDelegate.swift */,
 				727159CB1A79D22300DC220A /* ViewController.swift */,
 				727159CD1A79D22300DC220A /* Main.storyboard */,
@@ -110,6 +114,13 @@
 				727159DE1A79D22300DC220A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72E52DD61A79FE00001D89D9 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 			files = (
 				727159CC1A79D22300DC220A /* ViewController.swift in Sources */,
 				727159CA1A79D22300DC220A /* AppDelegate.swift in Sources */,
+				72E52DD81A79FE0E001D89D9 /* CollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +417,7 @@
 				727159E51A79D22300DC220A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		727159E61A79D22300DC220A /* Build configuration list for PBXNativeTarget "RescueTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +426,7 @@
 				727159E81A79D22300DC220A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
