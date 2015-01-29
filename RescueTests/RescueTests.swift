@@ -2,8 +2,8 @@
 //  RescueTests.swift
 //  RescueTests
 //
-//  Created by Alex Chen on 2015/1/18.
-//  Copyright (c) 2015年 Alex Chen. All rights reserved.
+//  Created by Alex Chen on 2015/1/29.
+//  Copyright (c) 2015年 KKAwesome. All rights reserved.
 //
 
 import UIKit

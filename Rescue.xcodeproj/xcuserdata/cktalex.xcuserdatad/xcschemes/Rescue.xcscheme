@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "72E380F11A6AC34A00E56F81"
+               BlueprintIdentifier = "727159C31A79D22200DC220A"
                BuildableName = "Rescue.app"
                BlueprintName = "Rescue"
                ReferencedContainer = "container:Rescue.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "72E381061A6AC34A00E56F81"
+               BlueprintIdentifier = "727159D81A79D22300DC220A"
                BuildableName = "RescueTests.xctest"
                BlueprintName = "RescueTests"
                ReferencedContainer = "container:Rescue.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "72E381061A6AC34A00E56F81"
+               BlueprintIdentifier = "727159D81A79D22300DC220A"
                BuildableName = "RescueTests.xctest"
                BlueprintName = "RescueTests"
                ReferencedContainer = "container:Rescue.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "72E380F11A6AC34A00E56F81"
+            BlueprintIdentifier = "727159C31A79D22200DC220A"
             BuildableName = "Rescue.app"
             BlueprintName = "Rescue"
             ReferencedContainer = "container:Rescue.xcodeproj">
@@ -75,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "72E380F11A6AC34A00E56F81"
+            BlueprintIdentifier = "727159C31A79D22200DC220A"
             BuildableName = "Rescue.app"
             BlueprintName = "Rescue"
             ReferencedContainer = "container:Rescue.xcodeproj">
@@ -93,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "72E380F11A6AC34A00E56F81"
+            BlueprintIdentifier = "727159C31A79D22200DC220A"
             BuildableName = "Rescue.app"
             BlueprintName = "Rescue"
             ReferencedContainer = "container:Rescue.xcodeproj">
