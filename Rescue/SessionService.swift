@@ -38,11 +38,11 @@ class SessionService : NSObject {
         // You can provide an optinal security identity for custom authentication.
         // Also you can set the encryption preference for the session.
         session = MCSession(peer: peerID)
-       
+        
         advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: info, serviceType: serviceType)
         
         serviceBrowser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
-
+        
         super.init()
         
         serviceBrowserDelegate = ServiceBrowserDelegate(session: session, myPeerID: peerID, sessionService: self)
@@ -124,7 +124,7 @@ class SessionDelegate: NSObject, MCSessionDelegate {
         Browsing = {
             (text)-> Void in
             print("No Browsing")
-
+            
         }
         
         self.sessionService = sessionService
@@ -136,7 +136,7 @@ class SessionDelegate: NSObject, MCSessionDelegate {
         println("Remote peer changed state - Connected to someone :-) -> \(peerID.displayName)  state: \(state)")
         
         if state == MCSessionState.Connected {
-             self.ChangesState(self.sessionService.inviteePeople.count)
+            self.ChangesState(self.sessionService.inviteePeople.count)
             
             println("Yeahhh someone to talk to -> \(peerID?.displayName)")
         }
@@ -146,7 +146,7 @@ class SessionDelegate: NSObject, MCSessionDelegate {
             println("Connecting to -> \(peerID?.displayName)")
         }
         if state == MCSessionState.NotConnected {
-             self.ChangesState(session.connectedPeers.count)
+            self.ChangesState(session.connectedPeers.count)
             println("NotConnected to -> \(peerID?.displayName)")
         }
     }
@@ -183,7 +183,7 @@ class SessionDelegate: NSObject, MCSessionDelegate {
         
     }
     
-
+    
     
 }
 
@@ -255,9 +255,11 @@ class ServiceBrowserDelegate: NSObject, MCNearbyServiceBrowserDelegate {
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!){
         
         let index = find(sessionService.inviteePeople, peerID)
-        sessionService.inviteePeople.removeAtIndex(index!)
+        if index != nil{
+            sessionService.inviteePeople.removeAtIndex(index!)
+            println("A nearby peer has stopped advertising-> \(peerID?.displayName)")
+        }
         
-        println("A nearby peer has stopped advertising-> \(peerID?.displayName)")
     }
     
     // Browsing did not start due to an error
