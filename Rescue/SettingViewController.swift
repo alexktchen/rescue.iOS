@@ -24,8 +24,7 @@ class SettingViewController : UITableViewController{
     override func viewWillAppear(animated: Bool) {
         
         self.navigationItem.title = "設定"
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "關閉", style: UIBarButtonItemStyle.Plain, target: self, action: "back")
-        
+
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let name = defaults.stringForKey("userName"){
@@ -33,10 +32,7 @@ class SettingViewController : UITableViewController{
         }
     }
     
-    func back(){
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
+
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         print(indexPath.section)
@@ -65,6 +61,9 @@ class SettingViewController : UITableViewController{
                     for result in results{
                         managedContext?.deleteObject(result as NSManagedObject)
                     }
+                    
+                    managedContext?.save(&error)
+                    
                     msg = "清除成功"
                     
                 }
