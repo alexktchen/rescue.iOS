@@ -27,7 +27,7 @@ class SessionService : NSObject {
     let serviceType = "ramdom"
     let info = ["key":"value"]
     
-    //
+    
     var inviteePeople:[MCPeerID] = []
     
     init(name:String){

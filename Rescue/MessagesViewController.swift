@@ -20,22 +20,30 @@ class MessagesViewController: JSQMessagesViewController {
     
     var session: SessionService?
     
+    var userName: String?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        if let name = defaults.stringForKey("userName"){
+            self.userName = name
+            sender = (sender != nil) ? sender : name
+            
+            session = SessionService(name: name)
+        }
+        
         self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
         self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
         
-               
-        session = SessionService(name: "My Name")
         
-        session?.onReceive {
-            (serializedPost:NSData) -> Void in
+        session?.onReceive { (serializedPost:NSData) -> Void in
             var post = NSKeyedUnarchiver.unarchiveObjectWithData(serializedPost) as TLSPost
             NSNotificationCenter.defaultCenter().postNotificationName("postReceived", object: post)
-            
         }
+        
         session?.onBrowsing{()->Void in
             
             NSNotificationCenter.defaultCenter().postNotificationName("BrowsingReceived", object: AnyObject?())
@@ -48,8 +56,6 @@ class MessagesViewController: JSQMessagesViewController {
         var timeInterval = NSTimeInterval(1)
         var timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self.session!, selector: Selector("start"), userInfo: nil, repeats: false)
         
-        sender = (sender != nil) ? sender : "Alex"
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("notificationWasReceived:"), name: "postReceived", object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("ChangesStatus:"), name: "ChangesStatusReceived", object: nil)
@@ -59,8 +65,6 @@ class MessagesViewController: JSQMessagesViewController {
         
         LoadMessage()
     }
-    
-    
     
     func StatusBrowsing(notification: NSNotification) {
         
@@ -83,11 +87,7 @@ class MessagesViewController: JSQMessagesViewController {
         var post = notification.object as TLSPost
         println(post.content)
         
-        receiveMessage(post.content,sender:"test")
-        
-    }
-    
-    @IBAction func search(sender: AnyObject) {
+        receiveMessage(post.content,sender:post.author)
         
     }
     
@@ -105,10 +105,8 @@ class MessagesViewController: JSQMessagesViewController {
         let notification:UILocalNotification = UILocalNotification()
         notification.alertBody = text
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-    }
-    
-    @IBAction func back(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        
+        SaveMessage(message)
     }
     
     func sendMessage(text: String!, sender: String!) {
@@ -117,19 +115,24 @@ class MessagesViewController: JSQMessagesViewController {
         
         var delegate = UIApplication.sharedApplication().delegate as AppDelegate
         
-        var post:TLSPost = TLSPost(author: "Matt", content: text)
+        var post:TLSPost = TLSPost(author: userName!, content: text)
         
         self.session?.send(post)
         
         let message = Message(text: text, sender: sender)
         self.messages.append(message)
         SaveMessage(message)
-
+        
         finishReceivingMessage()
+        
         scrollToBottomAnimated(true)
     }
     
-    func SaveMessage(sendMsg : Message){
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func SaveMessage(msg : Message){
         
         let appDelegte = UIApplication.sharedApplication().delegate as AppDelegate
         let managedContext = appDelegte.managedObjectContext
@@ -137,7 +140,8 @@ class MessagesViewController: JSQMessagesViewController {
         let entiy = NSEntityDescription.entityForName("Messages", inManagedObjectContext: managedContext!)
         
         let object = NSManagedObject(entity: entiy!, insertIntoManagedObjectContext: managedContext)
-        object.setValue(sendMsg.text_, forKey: "text")
+        object.setValue(msg.text_, forKey: "text")
+        object.setValue(msg.sender_, forKey: "username")
         
         var error : NSError?
         
@@ -160,15 +164,13 @@ class MessagesViewController: JSQMessagesViewController {
         if let results = fetchedResults{
             
             for result in results{
-                var msg: Message = Message(text: result.valueForKey("text") as? String, sender: sender)
+                var msg: Message = Message(text: result.valueForKey("text") as? String, sender: result.valueForKey("username") as? String)
                 messages.append(msg)
             }
         }
         else{
             print(error)
         }
-        
-        
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -197,7 +199,7 @@ class MessagesViewController: JSQMessagesViewController {
         sendMessage(text, sender: sender)
         
         finishSendingMessage()
-
+        
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
@@ -232,20 +234,10 @@ class MessagesViewController: JSQMessagesViewController {
         let message = messages[indexPath.item]
         
         
-        var label : UILabel = UILabel(frame: CGRectMake(0, 0, 50, 50))
-        label.text="附近"
-        
-        label.font = UIFont(name: label.font.fontName, size: 9);
-        label.textColor = UIColor.lightGrayColor();
-        label.textRectForBounds(CGRectMake(-100, 0, 50, 50), limitedToNumberOfLines: 1);
-        label.textAlignment = NSTextAlignment.Right;
-        
         if message.sender() == sender {
-            // cell.addSubview(label)
-            
-            // cell.subView.addSubview(label)
             cell.textView.textColor = UIColor.blackColor()
         } else {
+            
             cell.textView.textColor = UIColor.whiteColor()
         }
         

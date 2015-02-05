@@ -44,38 +44,13 @@ class MapViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerD
         else{
             println("Location service disabled");
         }
-        
-        
-        
+
         mapView.showsUserLocation = true
       
-
-         /*
-        var latitude:CLLocationDegrees = 48.3
-        var longitude:CLLocationDegrees = 9.99
-        
-        var latDelta:CLLocationDegrees=0.01
-        var longDeleta:CLLocationDegrees = 0.01
-        
-        var theSpan: MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDeleta)
-        
-        var churchLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        
-        var theRegion:MKCoordinateRegion = MKCoordinateRegionMake(churchLocation, theSpan)
-        
-        
-        self.mapView.setRegion(theRegion, animated: true)
-        
-        var theUlmMinsterAnntaion = CustomAnnotation(location: churchLocation)
-        //var theUlmMinsterAnntaion = MKPointAnnotation()
-        theUlmMinsterAnntaion.coordinate = churchLocation
-        theUlmMinsterAnntaion.title = "test"
-        theUlmMinsterAnntaion.subtitle = "test"
-        
-        self.mapView.addAnnotation(theUlmMinsterAnntaion)
- mapView(mapView, viewForAnnotation: theUlmMinsterAnntaion)
-        //addLocation(48.3, long: 9.99, title: "123")
-       */
+        DataManager.getHelpInfos { (lat,long,name,tel) -> Void in
+            
+             self.addLocation(lat, long: long,title: name,subTitle: tel)
+        }
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -93,10 +68,8 @@ class MapViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerD
         mapView.centerCoordinate = loadlocation;
         locationManager.stopUpdatingLocation();
         
-        
         let userLocation = mapView.userLocation
-        
-        addLocation(locValue.latitude, long: locValue.longitude, title: "消防局",subTitle: "松山分局")
+
     }
     
     func getCurrentLocation(){
@@ -121,10 +94,7 @@ class MapViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerD
         theUlmMinsterAnntaion.coordinate = churchLocation
         theUlmMinsterAnntaion.title = title
         theUlmMinsterAnntaion.subtitle = subTitle
-        
-        
-        
-        //annotationArray.append(theUlmMinsterAnntaion)
+
         self.mapView.addAnnotation(theUlmMinsterAnntaion)
 
         mapView(mapView, viewForAnnotation: theUlmMinsterAnntaion)
@@ -133,36 +103,31 @@ class MapViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerD
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
         self.mapView.setCenterCoordinate(userLocation.coordinate, animated: true)
-        
     }
 
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
         if annotation is MKUserLocation {
-            //return nil so map view draws "blue dot" for standard user location
             return nil
         }
    
-        var v : CustomAnnotationView! = nil
+        var point : CustomAnnotationView! = nil
         
-        let ident = "bike"
-        
-       // v = mapView.dequeueReusableAnnotationViewWithIdentifier(ident)
-        
-        if v == nil {
-            v = CustomAnnotationView(annotation:annotation, reuseIdentifier:ident)
-            v.calloutOffset = CGPointMake(0, 0)
-            //v = MKAnnotationView(annotation:annotation, reuseIdentifier:ident)
-            v.image = UIImage(named: "mapDotNormal")
-            v.canShowCallout = true
+        let ident = "helpinfo"
+
+        if point == nil {
+            point = CustomAnnotationView(annotation:annotation, reuseIdentifier:ident)
+            point.calloutOffset = CGPointMake(0, 0)
+            point.image = UIImage(named: "mapDotNormal")
+            point.canShowCallout = true
         }
         else {
-            v!.annotation = annotation
+            point!.annotation = annotation
         }
         
-        v.annotation = annotation
+        point.annotation = annotation
         
-        return v
+        return point
 
         
     }

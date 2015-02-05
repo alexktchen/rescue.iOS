@@ -12,6 +12,8 @@
 	<dict>
 		<key>328A985E595EE8F26CD339533FE0850993C52E3F</key>
 		<string>https://github.com/AlexChenKT/rescue.iOS.git</string>
+		<key>67620B5EFA902936DF04070AF595B76AB0333747</key>
+		<string>https://github.com/Alamofire/Alamofire.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Rescue.xcodeproj</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>328A985E595EE8F26CD339533FE0850993C52E3F</key>
 		<string>../..</string>
+		<key>67620B5EFA902936DF04070AF595B76AB0333747</key>
+		<string>../../../Alamofire</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/AlexChenKT/rescue.iOS.git</string>
@@ -28,6 +32,14 @@
 	<string>328A985E595EE8F26CD339533FE0850993C52E3F</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>67620B5EFA902936DF04070AF595B76AB0333747</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Alamofire</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

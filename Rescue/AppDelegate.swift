@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var locationManager: CLLocationManager?
+
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -31,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setObject(UIDevice.currentDevice().name, forKey: "userName")
         }
         
+        //DataManager.getHelpInfos(<#success: ((iTunesData: NSData!) -> Void)##(iTunesData: NSData!) -> Void#>)
+      //  DataManager.loadDataFromURL("", completion: <#(data: NSData?, error: NSError?) -> Void##(data: NSData?, error: NSError?) -> Void#>)
+       
         return true
     }
 

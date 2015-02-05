@@ -412,13 +412,17 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     
     cell.backgroundColor = [UIColor clearColor];
     
-    CGFloat bubbleTopLabelInset = 60.0f;
+    //上面的 label 位置
+    //可用來調整使用者名稱位置
+    CGFloat bubbleTopLabelInset = 15.0f;
     
     if (isOutgoingMessage) {
+        cell.cellBottomLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
     }
     else {
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
+        cell.cellBottomLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
     }
     
     cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
