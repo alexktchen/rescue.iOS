@@ -52,6 +52,20 @@ class MapViewController: UIViewController ,MKMapViewDelegate, CLLocationManagerD
              self.addLocation(lat, long: long,title: name,subTitle: tel)
         }
     }
+
+  override func updateViewConstraints() {
+    println(__FUNCTION__)
+    super.updateViewConstraints()
+    let views = [
+      "map": mapView
+    ]
+    let metrics = [
+      "padding": 0
+    ]
+
+    view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-padding-[map]-padding-|", options: NSLayoutFormatOptions(0), metrics: metrics, views: views))
+    view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-padding-[map]-padding-|", options: NSLayoutFormatOptions(0), metrics: metrics, views: views))
+  }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
