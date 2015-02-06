@@ -43,4 +43,19 @@ public class DataManager {
         }
     }
     
+    
+    class func PostRescueInfo(data: NSData) {
+        
+        var error:NSError? = nil
+
+        let parameter = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: &error)
+        
+        if(error==nil){
+            request(.POST, "http://httpbin.org/post", parameters: parameter.dictionaryObject)
+        }
+        else{
+            
+        }
+    }
+
 }
