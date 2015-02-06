@@ -1,53 +1,84 @@
 //
-//  Message.swift
+//  TLSPost.swift
 //  Rescue
 //
-//  Created by Alex Chen on 2015/1/25.
+//  Created by Alex Chen on 2015/1/26.
 //  Copyright (c) 2015年 Alex Chen. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class Message : NSObject, JSQMessageData {
-    var userName_:String?
-    var text_: String
-    var sender_: String
-    var date_: NSDate
-    var imageUrl_: String?
+class Message: NSObject, JSQMessageData {
     
-    convenience init(text: String?, sender: String?) {
-        self.init(text: text, sender: sender, imageUrl: nil)
+    var mdate: NSDate = NSDate()
+    var mid: String = ""
+    var mimageUrl: String?
+    var mlatitude: Double = 0.0
+    var mlongitude: Double = 0.0
+    var mreceived: Bool = false
+    var mrecordeUrl: String = ""
+    var msend: Bool = false
+    var mtext: String = ""
+    var msender: String?
+    var mvideoUrl: String?
+    
+    
+     override init() {
+        
+        super.init()
+      //  self.mtext = text
+       // self.msender = sender
+       // self.mdate = sendDate
+       // self.mimageUrl = imgUrl
+        
     }
     
-    init(text: String?, sender: String?, imageUrl: String?) {
-        self.text_ = text!
-        self.sender_ = sender!
-        self.date_ = NSDate()
-        self.imageUrl_ = imageUrl
+    
+    func encodeWithCoder(aCoder: NSCoder!) {
+        
+        aCoder.encodeObject(self.mtext, forKey: "text")
+        aCoder.encodeObject(self.msender, forKey: "sender")
+        aCoder.encodeObject(self.mdate, forKey: "date")
+        aCoder.encodeObject(self.mimageUrl, forKey: "imageUrl")
+        
     }
+    
+    init(coder decoder: NSCoder!) {
+        
+        self.mtext = decoder.decodeObjectForKey("text") as String
+        self.msender = decoder.decodeObjectForKey("sender") as? String
+        self.mdate = decoder.decodeObjectForKey("date") as NSDate
+        self.mimageUrl = decoder.decodeObjectForKey("imageUrl") as? String
+        
+    }
+    
+    
     
     func text() -> String! {
-        return text_;
+        return mtext;
     }
     
     func sender() -> String! {
-        return sender_;
+        return msender;
     }
     
     func date() -> NSDate! {
-        return date_;
+        return mdate;
     }
     
     func getDateString()-> String! {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "hh:mm a" // superset of OP's format
-        let str = dateFormatter.stringFromDate(date_)
+        let str = dateFormatter.stringFromDate(mdate)
         
         return str;
     }
     
     func imageUrl() -> String? {
-        return imageUrl_;
+        return mimageUrl;
     }
+    
+    
 }
+

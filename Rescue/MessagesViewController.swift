@@ -14,6 +14,8 @@ class MessagesViewController: JSQMessagesViewController {
     
     var messages = [Message]()
     
+   // var messageManagedObject = [NSManagedObject]()
+    
     var outgoingBubbleImageView = JSQMessagesBubbleImageFactory.outgoingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleLightGrayColor())
     
     var incomingBubbleImageView = JSQMessagesBubbleImageFactory.incomingMessageBubbleImageViewWithColor(UIColor.jsq_messageBubbleBlueColor())
@@ -40,7 +42,7 @@ class MessagesViewController: JSQMessagesViewController {
         
         
         session?.onReceive { (serializedPost:NSData) -> Void in
-            var post = NSKeyedUnarchiver.unarchiveObjectWithData(serializedPost) as TLSPost
+            var post = NSKeyedUnarchiver.unarchiveObjectWithData(serializedPost) as Message
             NSNotificationCenter.defaultCenter().postNotificationName("postReceived", object: post)
         }
         
@@ -84,16 +86,16 @@ class MessagesViewController: JSQMessagesViewController {
     
     func notificationWasReceived(notification: NSNotification) {
         
-        var post = notification.object as TLSPost
-        println(post.content)
+        var post = notification.object as Message
         
-        receiveMessage(post.content,sender:post.author)
+        
+       // receiveMessage(post.text_,sender:post.sender_)
         
     }
     
     func receiveMessage(text: String!, sender: String!){
         
-        let message = Message(text: text, sender: sender)
+        let message = Message()
         
         messages.append(message)
         
@@ -115,21 +117,17 @@ class MessagesViewController: JSQMessagesViewController {
         
         var delegate = UIApplication.sharedApplication().delegate as AppDelegate
         
-        var post:TLSPost = TLSPost(author: userName!, content: text)
         
-        self.session?.send(post)
-        
-        let message = Message(text: text, sender: sender)
+       // let message = Message(text: text, sender: self.sender, sendDate: NSDate())
+        let message = Message()
         self.messages.append(message)
+        self.session?.send(message)
+        
         SaveMessage(message)
         
         finishReceivingMessage()
         
         scrollToBottomAnimated(true)
-    }
-    
-    @IBAction func back(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func SaveMessage(msg : Message){
@@ -140,8 +138,10 @@ class MessagesViewController: JSQMessagesViewController {
         let entiy = NSEntityDescription.entityForName("Messages", inManagedObjectContext: managedContext!)
         
         let object = NSManagedObject(entity: entiy!, insertIntoManagedObjectContext: managedContext)
-        object.setValue(msg.text_, forKey: "text")
-        object.setValue(msg.sender_, forKey: "username")
+        object.setValue(msg.mtext, forKey: "text")
+        object.setValue(msg.msender, forKey: "username")
+        object.setValue(msg.mdate, forKey: "date")
+        object.setValue(msg.mimageUrl, forKey: "imageUrl")
         
         var error : NSError?
         
@@ -149,7 +149,6 @@ class MessagesViewController: JSQMessagesViewController {
             print(error)
         }
         
-        message.append(object)
     }
     
     func LoadMessage(){
@@ -164,7 +163,9 @@ class MessagesViewController: JSQMessagesViewController {
         if let results = fetchedResults{
             
             for result in results{
-                var msg: Message = Message(text: result.valueForKey("text") as? String, sender: result.valueForKey("username") as? String)
+                
+                var msg: Message = Message()
+                
                 messages.append(msg)
             }
         }
@@ -186,11 +187,6 @@ class MessagesViewController: JSQMessagesViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
-    override func didPressAccessoryButton(sender: UIButton!) {
-        
-    }
-    var message = [NSManagedObject]()
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, sender: String!, date: NSDate!){
         
@@ -296,6 +292,10 @@ class MessagesViewController: JSQMessagesViewController {
         }
         
         return kJSQMessagesCollectionViewCellLabelHeightDefault
+    }
+    
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

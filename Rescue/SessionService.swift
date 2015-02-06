@@ -78,7 +78,7 @@ class SessionService : NSObject {
     }
     
     
-    func send(post:TLSPost){
+    func send(post:Message){
         // Send a data message to a list of destination peers
         //func sendData(data: NSData!, toPeers peerIDs: AnyObject[]!, withMode mode: MCSessionSendDataMode, error: NSErrorPointer) -> Bool
         
