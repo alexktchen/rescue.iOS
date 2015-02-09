@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class StorageService {
-    
+    /*
     var tableBlobBlobs: MSTable?
     
     var tableContainers: MSTable?
@@ -114,4 +114,5 @@ class StorageService {
         
         
     }
+*/
 }

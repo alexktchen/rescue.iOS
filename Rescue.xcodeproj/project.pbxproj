@@ -27,7 +27,6 @@
 		72A7B1EA1A7E535B00B5577B /* CalloutDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A7B1E91A7E535B00B5577B /* CalloutDirectionsView.swift */; };
 		72A7B1EC1A7E53D800B5577B /* CalloutDirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A7B1EB1A7E53D800B5577B /* CalloutDirectionsView.xib */; };
 		72E3A32E1A87AAA10081AD03 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E3A32D1A87AAA10081AD03 /* StorageService.swift */; };
-		72E3A33A1A87B6470081AD03 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E3A3391A87B6470081AD03 /* WindowsAzureMobileServices.framework */; };
 		72E52DD81A79FE0E001D89D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */; };
 		72E52DDA1A79FFAC001D89D9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DD91A79FFAC001D89D9 /* Reachability.swift */; };
 		72E52DDC1A79FFB2001D89D9 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DDB1A79FFB2001D89D9 /* SessionService.swift */; };
@@ -141,7 +140,6 @@
 		72A7B1E91A7E535B00B5577B /* CalloutDirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutDirectionsView.swift; sourceTree = "<group>"; };
 		72A7B1EB1A7E53D800B5577B /* CalloutDirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalloutDirectionsView.xib; sourceTree = "<group>"; };
 		72E3A32D1A87AAA10081AD03 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
-		72E3A3391A87B6470081AD03 /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		72E52DD91A79FFAC001D89D9 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		72E52DDB1A79FFB2001D89D9 /* SessionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72E3A33A1A87B6470081AD03 /* WindowsAzureMobileServices.framework in Frameworks */,
 				72EB5FEB1A7B5DD2003E86BA /* CoreLocation.framework in Frameworks */,
 				72EB5FE91A7B5DA7003E86BA /* MapKit.framework in Frameworks */,
 			);
@@ -351,7 +348,6 @@
 		72972E971A7D2F3B0003ECA9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				72E3A3391A87B6470081AD03 /* WindowsAzureMobileServices.framework */,
 				72EB5FE81A7B5DA7003E86BA /* MapKit.framework */,
 				72EB5FEA1A7B5DD2003E86BA /* CoreLocation.framework */,
 			);
