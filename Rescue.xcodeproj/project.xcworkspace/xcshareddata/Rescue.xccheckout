@@ -12,6 +12,8 @@
 	<dict>
 		<key>328A985E595EE8F26CD339533FE0850993C52E3F</key>
 		<string>https://github.com/AlexChenKT/rescue.iOS.git</string>
+		<key>5F43EE7D5DE3603E315F4D33EAF35DF7986171E3</key>
+		<string>https://github.com/Azure-Samples/iOS-MobileServices-Storage.git</string>
 		<key>67620B5EFA902936DF04070AF595B76AB0333747</key>
 		<string>https://github.com/Alamofire/Alamofire.git</string>
 	</dict>
@@ -21,6 +23,8 @@
 	<dict>
 		<key>328A985E595EE8F26CD339533FE0850993C52E3F</key>
 		<string>../..</string>
+		<key>5F43EE7D5DE3603E315F4D33EAF35DF7986171E3</key>
+		<string>../../../iOS-MobileServices-Storage</string>
 		<key>67620B5EFA902936DF04070AF595B76AB0333747</key>
 		<string>../../../Alamofire</string>
 	</dict>
@@ -39,6 +43,14 @@
 			<string>67620B5EFA902936DF04070AF595B76AB0333747</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Alamofire</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>5F43EE7D5DE3603E315F4D33EAF35DF7986171E3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS-MobileServices-Storage</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

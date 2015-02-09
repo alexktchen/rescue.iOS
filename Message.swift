@@ -9,76 +9,86 @@
 import UIKit
 
 class Message: NSObject, JSQMessageData {
-    
-    var mdate: NSDate = NSDate()
-    var mid: String = ""
-    var mimageUrl: String?
-    var mlatitude: Double = 0.0
-    var mlongitude: Double = 0.0
-    var mreceived: Bool = false
-    var mrecordeUrl: String = ""
-    var msend: Bool = false
-    var mtext: String = ""
-    var msender: String?
-    var mvideoUrl: String?
-    
+    //發送時間
+    var sendDateTime: NSDate = NSDate()
+    //上傳時間
+    var uploadDateTime: NSDate = NSDate()
+    //接收時間
+    var sreceivedDateTime: NSDate = NSDate()
+    //訊息id(GUID)
+    var id: String = ""
+    //上傳照片 Url
+    var imageUrl: String?
+    //發送者 lat
+    var latitude: Double = 0.0
+    //發送者 long
+    var longitude: Double = 0.0
+    //是否被接收
+    var received: Bool = false
+    //錄音 url
+    var recordeUrl: String = ""
+    //是否發送
+    var send: Bool = false
+    //是否上傳
+    var uploaded: Bool = false
+    //訊息內容
+    var text: String = ""
+    //發送者
+    var sender: String = ""
+    //接收者
+    var receiver: String = ""
+    //影片 url
+    var videoUrl: String?
+    //訊息轉發次數
+    var transmitCount:Int = 0
+    //上傳者
+    var uploader: String = ""
     
      override init() {
-        
         super.init()
-      //  self.mtext = text
-       // self.msender = sender
-       // self.mdate = sendDate
-       // self.mimageUrl = imgUrl
-        
     }
     
     
     func encodeWithCoder(aCoder: NSCoder!) {
         
-        aCoder.encodeObject(self.mtext, forKey: "text")
-        aCoder.encodeObject(self.msender, forKey: "sender")
-        aCoder.encodeObject(self.mdate, forKey: "date")
-        aCoder.encodeObject(self.mimageUrl, forKey: "imageUrl")
+        aCoder.encodeObject(self.text, forKey: "text")
+        aCoder.encodeObject(self.sender, forKey: "sender")
+        aCoder.encodeObject(self.sendDateTime, forKey: "sendDateTime")
+        aCoder.encodeObject(self.imageUrl, forKey: "imageUrl")
         
     }
     
     init(coder decoder: NSCoder!) {
         
-        self.mtext = decoder.decodeObjectForKey("text") as String
-        self.msender = decoder.decodeObjectForKey("sender") as? String
-        self.mdate = decoder.decodeObjectForKey("date") as NSDate
-        self.mimageUrl = decoder.decodeObjectForKey("imageUrl") as? String
+        self.text = decoder.decodeObjectForKey("text") as String
+        self.sender = decoder.decodeObjectForKey("sender") as String!
+        self.sendDateTime = decoder.decodeObjectForKey("sendDateTime") as NSDate
+        self.imageUrl = decoder.decodeObjectForKey("imageUrl") as? String
         
     }
     
-    
-    
-    func text() -> String! {
-        return mtext;
+ 
+
+    func getText() -> String! {
+        return text;
     }
     
-    func sender() -> String! {
-        return msender;
+    func getSender() -> String! {
+        return sender;
     }
     
-    func date() -> NSDate! {
-        return mdate;
+    func getDate() -> NSDate! {
+        return sendDateTime;
     }
     
     func getDateString()-> String! {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "hh:mm a" // superset of OP's format
-        let str = dateFormatter.stringFromDate(mdate)
+        let str = dateFormatter.stringFromDate(sendDateTime)
         
         return str;
     }
-    
-    func imageUrl() -> String? {
-        return mimageUrl;
-    }
-    
-    
+
 }
 

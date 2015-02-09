@@ -77,11 +77,13 @@ class SessionService : NSObject {
         serviceBrowser.startBrowsingForPeers()
     }
     
+    func stop(){
+        serviceBrowser.stopBrowsingForPeers()
+    }
+    
     
     func send(post:Message){
         // Send a data message to a list of destination peers
-        //func sendData(data: NSData!, toPeers peerIDs: AnyObject[]!, withMode mode: MCSessionSendDataMode, error: NSErrorPointer) -> Bool
-        
         let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(post)
         
         var error : NSError?
@@ -223,7 +225,7 @@ class ServiceBrowserDelegate: NSObject, MCNearbyServiceBrowserDelegate {
     
     let sessionService: SessionService
     
-    let inviteTimeout: NSTimeInterval = 30 //30 seconds is the default anyway
+    let inviteTimeout: NSTimeInterval = 3 //30 seconds is the default anyway
     
     let myPeerID: MCPeerID
     

@@ -18,10 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var locationManager: CLLocationManager?
     
     let reachability = Reachability.reachabilityForInternetConnection()
-    
-
-    
+   
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+  
+        let service: StorageService = StorageService()
         
         locationManager = CLLocationManager()
         locationManager?.requestWhenInUseAuthorization()

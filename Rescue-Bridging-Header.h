@@ -9,5 +9,8 @@
 
 #import "ASHSpringyCollectionViewFlowLayout.h"
 #import "BRASpringyCollectionViewFlowLayout.h"
-#import "CCFSSpringyGridCollectionViewFlowLayout.h"
+
 #import "BFPaperButton.h"
+
+
+#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>

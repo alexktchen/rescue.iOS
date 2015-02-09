@@ -61,8 +61,8 @@
     _springLength = 0.0;
     _springFrequency = 1.0;
     _springDamping = 1.1;
-    _largeCellDimension = 124.0;
-    _mediumCellDimension = 100.0;
+    _largeCellDimension = 140.0;
+    _mediumCellDimension = 150.0;
     _smallCellDimension = 76.0;
     _minimumNumberOfCellsForStaggeringLayout = 4;
     _minimumNumberOfCellsToShrink = 8;
@@ -249,7 +249,7 @@
     }
     else if (numberOfItems < self.minimumNumberOfCellsToShrink)
     {
-        self.itemSize = CGSizeMake(self.mediumCellDimension, self.mediumCellDimension);
+        self.itemSize = CGSizeMake(140, 140);
     }
     else
     {

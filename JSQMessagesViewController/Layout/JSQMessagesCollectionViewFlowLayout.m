@@ -373,7 +373,7 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     
     CGFloat textInsetsTotal = [self jsq_messageBubbleTextContainerInsetsTotal];
     
-    CGRect stringRect = [[messageData text] boundingRectWithSize:CGSizeMake(maximumTextWidth - textInsetsTotal, CGFLOAT_MAX)
+    CGRect stringRect = [[messageData getText] boundingRectWithSize:CGSizeMake(maximumTextWidth - textInsetsTotal, CGFLOAT_MAX)
                                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                                       attributes:@{ NSFontAttributeName : self.messageBubbleFont }
                                                          context:nil];
@@ -432,7 +432,7 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
 - (CGSize)jsq_avatarSizeForIndexPath:(NSIndexPath *)indexPath
 {
     id<JSQMessageData> messageData = [self.collectionView.dataSource collectionView:self.collectionView messageDataForItemAtIndexPath:indexPath];
-    NSString *messageSender = [messageData sender];
+    NSString *messageSender = [messageData getSender];
    
     if ([messageSender isEqualToString:[self.collectionView.dataSource sender]]) {
         return self.outgoingAvatarViewSize;

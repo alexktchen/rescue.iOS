@@ -378,7 +378,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     id<JSQMessageData> messageData = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
     NSParameterAssert(messageData != nil);
     
-    NSString *messageSender = [messageData sender];
+    NSString *messageSender = [messageData getSender];
     NSParameterAssert(messageSender != nil);
     
     BOOL isOutgoingMessage = [messageSender isEqualToString:self.sender];
@@ -387,7 +387,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     
-    NSString *messageText = [messageData text];
+    NSString *messageText = [messageData getText];
     NSParameterAssert(messageText != nil);
     
     cell.textView.text = messageText;
@@ -412,17 +412,13 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     
     cell.backgroundColor = [UIColor clearColor];
     
-    //上面的 label 位置
-    //可用來調整使用者名稱位置
-    CGFloat bubbleTopLabelInset = 15.0f;
+    CGFloat bubbleTopLabelInset = 60.0f;
     
     if (isOutgoingMessage) {
-        cell.cellBottomLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
     }
     else {
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
-        cell.cellBottomLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
     }
     
     cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;

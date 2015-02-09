@@ -18,6 +18,8 @@ class CollectionViewCell: UICollectionViewCell {
     
     let label: UILabel!
     
+    var imageView: UIImageView!
+    
     let selectionView: UIView!
     var maskLayer: CAShapeLayer!
     
@@ -37,23 +39,32 @@ class CollectionViewCell: UICollectionViewCell {
         maskLayer = CAShapeLayer()
         maskLayer.strokeColor = UIColor.redColor().CGColor
         maskLayer.fillColor = UIColor.redColor().CGColor
-        maskLayer.frame = CGRect(x: 2, y: 2, width: 118, height: 118)
+        maskLayer.frame = CGRect(x: 2, y: 2, width: 130, height: 130)
         let pathRef = CGPathCreateWithEllipseInRect(maskLayer.frame, nil)
         maskLayer.path = pathRef
         //maskLayer.frame = self.bounds
         self.layer.mask = maskLayer
         self.layer.masksToBounds = true
         
-        let textFrame = CGRect(x: 20, y: 12, width: frame.size.width, height: frame.size.height/3)
+        let textFrame = CGRect(x: 0, y: 80, width: frame.size.width, height: frame.size.height/3)
         textLabel = UILabel(frame: textFrame)
         textLabel.font = UIFont.systemFontOfSize(UIFont.labelFontSize())
-        textLabel.textAlignment = .Left
+        textLabel.textAlignment = .Center
         textLabel.textColor = UIColor.whiteColor()
         
+        
+        
         contentView.addSubview(textLabel)
+        
+        imageView = UIImageView(frame: CGRectMake(frame.width/2/2, frame.height/2/2/2, 70, 70));
+        
+        contentView.addSubview(imageView);
     }
     
-    
+    func setImage(url:String){
+        
+        imageView.image = UIImage(named: url);
+    }
     
     func setTitle(title: String){
         

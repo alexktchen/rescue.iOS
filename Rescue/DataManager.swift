@@ -15,7 +15,7 @@ let baseUrl = "http://rescueapiservice.azurewebsites.net/"
 
 public class DataManager {
     
-    
+    //取得救難點
     class func getHelpInfos(success : ((lat: Double!,long:Double,name: String,tel: String) -> Void)) {
         
         request(.GET, baseUrl + "api/helpinfo", parameters: nil).responseJSON { (req, res, json, error) in
@@ -43,19 +43,18 @@ public class DataManager {
         }
     }
     
+    //上傳求救訊號
+    class func PostRescueInfo(data: NSObject) {
+   
+        let json:JSON =  ["id":"123", "xAddr":"11","yAddr":"11","rescueTime":"\(NSDate())","photoUrl":"","videoUrl":""]
     
-    class func PostRescueInfo(data: NSData) {
-        
-        var error:NSError? = nil
-
-        let parameter = JSON(data: data, options: NSJSONReadingOptions.MutableContainers, error: &error)
-        
-        if(error==nil){
-            request(.POST, "http://httpbin.org/post", parameters: parameter.dictionaryObject)
-        }
-        else{
+        request(.POST, baseUrl + "api/rescueInfo", parameters: json.dictionaryObject, encoding: ParameterEncoding.JSON).responseJSON {
+            (request, response, JSON, error) in
+          //  println("request: \(request)")
+          //  println("response: \(response)")
+            println("JSON: \(JSON)")
+            println("error: \(error)")
             
         }
     }
-
 }

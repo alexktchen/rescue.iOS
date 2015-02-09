@@ -74,18 +74,22 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
         case 0:
             cell?.tintColor = UIColor(red: 244/255, green: 0, blue: 9/255, alpha: 1)
             cell?.setTitle("求救")
+             cell?.setImage("my-topic")
             break
         case 1:
             cell?.tintColor = UIColor(red: 252/255, green: 143/255, blue: 46/255, alpha: 1)
             cell?.setTitle("尋找訊號")
+             cell?.setImage("near-me")
             break
         case 2:
             cell?.tintColor = UIColor(red: 3/255, green: 149/255, blue: 60/255, alpha: 1)
             cell?.setTitle("救難點")
+             cell?.setImage("geo-fence")
             break
         case 3:
             cell?.tintColor = UIColor(red: 61/255, green: 148/255, blue: 179/255, alpha: 1)
             cell?.setTitle("設定")
+            cell?.setImage("settings")
             break
         default:
             break

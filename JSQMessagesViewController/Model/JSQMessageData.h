@@ -33,18 +33,18 @@
  *  @return The body text of the message. 
  *  @warning You must not return `nil` from this method.
  */
-- (NSString *)text;
+- (NSString *)getText;
 
 /**
  *  @return The name of the user who sent the message.
  *  @warning You must not return `nil` from this method.
  */
-- (NSString *)sender;
+- (NSString *)getSender;
 
 /**
  *  @return The date that the message was sent.
  *  @warning You must not return `nil` from this method.
  */
-- (NSDate *)date;
+- (NSDate *)getDate;
 
 @end
