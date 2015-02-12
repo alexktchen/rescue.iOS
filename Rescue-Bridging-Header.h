@@ -12,5 +12,6 @@
 
 #import "BFPaperButton.h"
 
+#import "MBProgressHUD.h"
 
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>

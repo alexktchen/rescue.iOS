@@ -51,6 +51,24 @@
             </objects>
             <point key="canvasLocation" x="206" y="2"/>
         </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="cuB-cu-Ya2">
+            <objects>
+                <viewController restorationIdentifier="CameraView" storyboardIdentifier="CameraView" id="GD9-gR-7kL" customClass="CameraViewController" customModule="Rescue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5bG-4t-r7u"/>
+                        <viewControllerLayoutGuide type="bottom" id="T2B-hc-h3Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="axy-qv-mA2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="88k-NM-3JC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="-645"/>
+        </scene>
         <!--Messages View Controller-->
         <scene sceneID="gbQ-vl-G7P">
             <objects>

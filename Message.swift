@@ -9,6 +9,9 @@
 import UIKit
 
 class Message: NSObject, JSQMessageData {
+    
+
+    
     //發送時間
     var sendDateTime: NSDate = NSDate()
     //上傳時間
@@ -35,6 +38,8 @@ class Message: NSObject, JSQMessageData {
     var text: String = ""
     //發送者
     var sender: String = ""
+    //發送者id
+    var msgSenderId: String = ""
     //接收者
     var receiver: String = ""
     //影片 url
@@ -49,7 +54,7 @@ class Message: NSObject, JSQMessageData {
     }
     
     
-    func encodeWithCoder(aCoder: NSCoder!) {
+    func encodeWithCoder(aCoder: NSCoder) {
         
         aCoder.encodeObject(self.text, forKey: "text")
         aCoder.encodeObject(self.sender, forKey: "sender")
@@ -69,17 +74,23 @@ class Message: NSObject, JSQMessageData {
     
  
 
-    func getText() -> String! {
-        return text;
+    func senderId() -> String! {
+        return ""
     }
     
-    func getSender() -> String! {
-        return sender;
+    func senderDisplayName() -> String! {
+        return ""
     }
-    
-    func getDate() -> NSDate! {
-        return sendDateTime;
+    func date() -> NSDate! {
+        return NSDate()
     }
+    func isMediaMessage() -> Bool {
+        return false
+    }
+    func hash() -> UInt {
+       return 0
+    }
+  
     
     func getDateString()-> String! {
         

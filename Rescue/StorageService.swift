@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class StorageService {
-    /*
+
+class StorageService : NSObject, MBProgressHUDDelegate{
+    
     var tableBlobBlobs: MSTable?
     
     var tableContainers: MSTable?
     
-    init(){
+    override init(){
         
         
         let client = MSClient(applicationURLString: "https://recuse-mobile-service.azure-mobile.net/", withApplicationKey: "oTghGlBNZdBTAqCUbrBfLIKrEnXHXJ26")
@@ -28,7 +29,7 @@ class StorageService {
         
         //loadContainer()
         
-        uploadImage()
+        //uploadImage()
     }
     
     func loadData() {
@@ -72,14 +73,12 @@ class StorageService {
         }))
     }
     
-    func uploadImage(){
-
-        let myImage = UIImage(named:"Image-1")
+    func uploadImage(image:UIImage, hud: MBProgressHUD){
         
-        let data: NSData = UIImagePNGRepresentation(myImage)
+        let data: NSData = UIImagePNGRepresentation(image)
         
         let item: NSDictionary = NSDictionary()
-        let params: NSDictionary = ["containerName":"qqq","blobName":"6666666"]
+        let params: NSDictionary = ["containerName":"qqq","blobName":"0000000000"]
         
         
         self.tableBlobBlobs?.insert(item, parameters: params, completion: { (results:[NSObject : AnyObject]!, error: NSError!) -> Void in
@@ -87,7 +86,6 @@ class StorageService {
           
             if(error == nil){
                 var json = JSON(results)
-                println(json)
                 
                 let sasUrl = json["sasUrl"].string
                 
@@ -95,12 +93,29 @@ class StorageService {
                 
                 request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
                 request.HTTPMethod = "PUT"
-                
                 upload(request, data).progress(closure: {
                     (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
+                    
+                    hud.progress = Float(totalBytesWritten/100)
+                    hud.graceTime = Float(totalBytesExpectedToWrite/100)
+              
+                    
                     println(totalBytesWritten)
+                    println(bytesWritten)
+                    println(totalBytesExpectedToWrite)
+                    println("---------------------")
+                    
                 }).responseJSON { (request, response, JSON, error) in
-                    println(JSON)
+                 
+                    if(error == nil){
+                        println(JSON)
+                        println(response)
+                        hud.hide(true)
+                    }
+                    else{
+                        println(error)
+                    }
+                    
                 }
 
             }
@@ -114,5 +129,5 @@ class StorageService {
         
         
     }
-*/
+
 }

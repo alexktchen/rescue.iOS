@@ -82,7 +82,15 @@ class SessionService : NSObject {
     }
     
     
-    func send(post:Message){
+    func sendPhoto(post : JSQMessage){
+        let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(post)
+        var error : NSError?
+        
+        
+         session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Unreliable, error: &error)
+    }
+    
+    func send(post : JSQMessage){
         // Send a data message to a list of destination peers
         let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(post)
         
@@ -99,6 +107,7 @@ class SessionService : NSObject {
             println("Yeahhh message sent")
         }
     }
+
 }
 
 class SessionDelegate: NSObject, MCSessionDelegate {
