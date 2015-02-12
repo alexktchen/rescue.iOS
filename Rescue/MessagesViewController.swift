@@ -386,9 +386,9 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
         
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 
-        hud.labelText = "上傳中.."
+        hud.labelText = "上傳中"
         
-        hud.mode = MBProgressHUDModeDeterminateHorizontalBar
+        hud.mode = MBProgressHUDModeAnnularDeterminate
         
         
         let service: StorageService = StorageService()

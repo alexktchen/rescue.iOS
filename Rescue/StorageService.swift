@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 
-class StorageService : NSObject, MBProgressHUDDelegate{
+class StorageService{
     
     var tableBlobBlobs: MSTable?
     
     var tableContainers: MSTable?
     
-    override init(){
+    init(){
         
         
         let client = MSClient(applicationURLString: "https://recuse-mobile-service.azure-mobile.net/", withApplicationKey: "oTghGlBNZdBTAqCUbrBfLIKrEnXHXJ26")
@@ -80,7 +80,7 @@ class StorageService : NSObject, MBProgressHUDDelegate{
         let item: NSDictionary = NSDictionary()
         let params: NSDictionary = ["containerName":"qqq","blobName":"0000000000"]
         
-        
+        self.tableBlobBlobs?.
         self.tableBlobBlobs?.insert(item, parameters: params, completion: { (results:[NSObject : AnyObject]!, error: NSError!) -> Void in
             
           
@@ -95,16 +95,9 @@ class StorageService : NSObject, MBProgressHUDDelegate{
                 request.HTTPMethod = "PUT"
                 upload(request, data).progress(closure: {
                     (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-                    
-                    hud.progress = Float(totalBytesWritten/100)
-                    hud.graceTime = Float(totalBytesExpectedToWrite/100)
-              
-                    
-                    println(totalBytesWritten)
-                    println(bytesWritten)
-                    println(totalBytesExpectedToWrite)
-                    println("---------------------")
-                    
+
+                    hud.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
+
                 }).responseJSON { (request, response, JSON, error) in
                  
                     if(error == nil){
@@ -116,6 +109,7 @@ class StorageService : NSObject, MBProgressHUDDelegate{
                         println(error)
                     }
                     
+                    hud.hide(true)
                 }
 
             }
