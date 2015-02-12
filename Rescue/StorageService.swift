@@ -79,8 +79,7 @@ class StorageService{
         
         let item: NSDictionary = NSDictionary()
         let params: NSDictionary = ["containerName":"qqq","blobName":"0000000000"]
-        
-        self.tableBlobBlobs?.
+
         self.tableBlobBlobs?.insert(item, parameters: params, completion: { (results:[NSObject : AnyObject]!, error: NSError!) -> Void in
             
           
