@@ -150,6 +150,7 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
         
         var receuvedMessage = notification.object as JSQMessage
         
+        println("received from : " + receuvedMessage.senderDisplayName)
         
         if(receuvedMessage.isMediaMessage){
             let jsqMessadata = receuvedMessage.media as JSQMessageMediaData
@@ -198,8 +199,7 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
         var delegate = UIApplication.sharedApplication().delegate as AppDelegate
         
         let message = JSQMessage(senderId: self.senderId, displayName: self.senderDisplayName, text: text)
-        
-        
+
         // message.id = NSUUID().UUIDString
         // message.sendDateTime = NSDate()
         // message.latitude = self.locationManager.location.coordinate.latitude
@@ -293,30 +293,15 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
     }
     
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!, senderDisplayName: String!, date: NSDate!) {
-        
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
         sendMessage(text, sender: senderDisplayName)
-        
         finishSendingMessage()
-        
     }
     
     override func didPressAccessoryButton(sender: UIButton!) {
-        /*
-        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Media messages"
-        delegate:self
-        cancelButtonTitle:@"Cancel"
-        destructiveButtonTitle:nil
-        otherButtonTitles:@"Send photo", @"Send location", @"Send video", nil];
         
-        [sheet showFromToolbar:self.inputToolbar];
-        
-        */
-        //let sheet : UIActionSheet = UIActionSheet(title: "Media message", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, other)
         let sheet : UIActionSheet = UIActionSheet(title: "Media message", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil, otherButtonTitles: "Send photo")
         sheet.showFromToolbar(self.inputToolbar)
-        
         
     }
     
@@ -329,14 +314,8 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
             
         case 1:
             
-            // let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            // let vc: UIViewController = storyboard.instantiateViewControllerWithIdentifier("CameraView") as UIViewController
-            // self.presentViewController(vc, animated: true, completion: nil)
-            
             self.presentViewController(imagePicker!, animated: true, completion: nil)
-            
             break
-            
         case 2:
             
             let locationItem: JSQLocationMediaItem = JSQLocationMediaItem(location: self.locationManager.location)
@@ -358,48 +337,57 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
         self.finishSendingMessageAnimated(true)
     }
     
-
     
-    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
-
+    func reduceImageSize(image:UIImage) -> UIImage{
         let width = CGImageGetWidth(image.CGImage) / 2 / 2 / 2
         let height = CGImageGetHeight(image.CGImage) / 2 / 2 / 2
         let bitsPerComponent = CGImageGetBitsPerComponent(image.CGImage)
         let bytesPerRow = CGImageGetBytesPerRow(image.CGImage)
         let colorSpace = CGImageGetColorSpace(image.CGImage)
         let bitmapInfo = CGImageGetBitmapInfo(image.CGImage)
-        
         let context = CGBitmapContextCreate(nil, width, height, bitsPerComponent, bytesPerRow, colorSpace, bitmapInfo)
-        
         CGContextSetInterpolationQuality(context, kCGInterpolationHigh)
-        
         CGContextDrawImage(context, CGRect(origin: CGPointZero, size: CGSize(width: CGFloat(width), height: CGFloat(height))), image.CGImage)
-        
-        let scaledImage = UIImage(CGImage: CGBitmapContextCreateImage(context))
-        
-        
-        UIImageWriteToSavedPhotosAlbum(scaledImage, self, nil, nil)
+        return UIImage(CGImage: CGBitmapContextCreateImage(context), scale: CGFloat(0.5), orientation: UIImageOrientation.Right)!
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: NSDictionary!){
         
         self.dismissViewControllerAnimated(false, completion: nil)
         
+        let scaledImage = reduceImageSize(image)
         
+        
+        let photoItem: JSQPhotoMediaItem = JSQPhotoMediaItem(image: scaledImage)
+        let photoMessage: JSQMessage = JSQMessage(senderId: self.senderId, displayName: self.senderDisplayName, media: photoItem)
+        self.messages.addObject(photoMessage)
+        self.finishSendingMessage()
+        
+        UIImageWriteToSavedPhotosAlbum(scaledImage, self, nil, nil)
         
         let hud = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-
+        
         hud.labelText = "上傳中"
         
         hud.mode = MBProgressHUDModeAnnularDeterminate
         
-        
         let service: StorageService = StorageService()
-        service.uploadImage(scaledImage!, hud: hud)
+        
+        service.uploadImage(scaledImage, hud: hud, completion:{(url) in
+            
+            let mlat =  self.locationManager.location.coordinate.latitude
+            let mlong =  self.locationManager.location.coordinate.longitude
+            
+            //-----------Todo----------------////
+            //DataManager.PostRescueInfo(mlat, long: mlong, photourl: url)
+            hud.hide(true)
+        })
         
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController!){
         self.dismissViewControllerAnimated(false, completion: nil)
     }
-
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return messages[indexPath.item] as JSQMessage
@@ -431,47 +419,12 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
         return NSAttributedString(string:message.senderDisplayName)
     }
     
-    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-        
-        let message = messages[indexPath.item] as JSQMessage
-        
-        // Sent by me, skip
-        if message.senderId == self.senderId {
-            return nil
-        }
-        
-        // Same as previous sender, skip
-        if indexPath.item > 0 {
-            
-            let previousMessage = messages[indexPath.item - 1] as JSQMessage
-            if previousMessage.senderId == message.senderId {
-                return nil
-            }
-        }
-        
-        return nil
-    }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
         
         let message = messages[indexPath.item] as JSQMessage
-        
-        // if message.senderId == self.senderId {
-        
-        //cell.textView.textColor = UIColor.blackColor()
-        /// }
-        // else {
-        
-        // cell.textView.textColor = UIColor.whiteColor()
-        // }
-        
-        // let attributes : [NSObject:AnyObject] = [NSForegroundColorAttributeName:cell.textView.textColor, NSUnderlineStyleAttributeName: 1]
-        // cell.textView.linkTextAttributes = attributes
-        
-        
-        //JSQMessage *msg = [self.demoData.messages objectAtIndex:indexPath.item];
         
         if (!message.isMediaMessage) {
             
@@ -491,103 +444,54 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
         return cell
     }
     
-    /*
-    override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
-    
-    return messages[indexPath.item]
-    }
-    
-    override func collectionView(collectionView: JSQMessagesCollectionView!, bubbleImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
-    
-    let message = messages[indexPath.item]
-    
-    if message.sender == self.sender{
-    return UIImageView(image: outgoingBubbleImageView.image, highlightedImage: outgoingBubbleImageView.highlightedImage)
-    }
-    
-    return UIImageView(image: incomingBubbleImageView.image, highlightedImage: incomingBubbleImageView.highlightedImage)
-    }
-    
-    override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageViewForItemAtIndexPath indexPath: NSIndexPath!) -> UIImageView! {
-    let message = messages[indexPath.item]
-    return UIImageView(image: UIImage())
-    }
-    
-    
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return messages.count
-    }
-    
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    
-    let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as JSQMessagesCollectionViewCell
-    let message = messages[indexPath.item]
-    
-    
-    if message.sender == self.sender {
-    cell.textView.textColor = UIColor.blackColor()
-    } else {
-    
-    cell.textView.textColor = UIColor.whiteColor()
-    }
-    
-    let attributes : [NSObject:AnyObject] = [NSForegroundColorAttributeName:cell.textView.textColor, NSUnderlineStyleAttributeName: 1]
-    cell.textView.linkTextAttributes = attributes
-    
-    return cell
-    }
-    
     override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
-    
-    let message = messages[indexPath.item];
-    
-    return NSAttributedString(string:message.getDateString())
+        
+        let message = messages[indexPath.item] as JSQMessage
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.dateFormat = "HH:mm:ss"
+        let messageDate = dateFormatter.stringFromDate(message.date)
+        
+        return NSAttributedString(string: messageDate)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellBottomLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-    return CGFloat(20)
+        return 20.0
     }
     
-    // View  usernames above bubbles
-    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString!{
-    let message = messages[indexPath.item];
-    
-    // Sent by me, skip
-    if message.sender == self.sender {
-    return nil
-    }
-    
-    // Same as previous sender, skip
-    if indexPath.item > 0 {
-    let previousMessage = messages[indexPath.item - 1];
-    if previousMessage.sender == message.sender {
-    return nil
-    }
-    }
-    
-    return NSAttributedString(string:message.sender)
+    override func collectionView(collectionView: JSQMessagesCollectionView!, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        
+        let message = messages[indexPath.item] as JSQMessage
+        if message.senderId == self.senderId {
+            return nil
+        }
+        
+        if indexPath.item > 0 {
+            let perviousMessage = messages[indexPath.item - 1] as JSQMessage
+            if perviousMessage.senderId == message.senderId{
+                return nil
+            }
+        }
+        return NSAttributedString(string:message.senderDisplayName)
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-    
-    let message = messages[indexPath.item]
-    
-    // Sent by me, skip
-    if message.sender == self.sender  {
-    return CGFloat(0.0)
+        
+        let message = messages[indexPath.item] as JSQMessage
+        
+        if message.senderId == self.senderId{
+            return CGFloat(0.0)
+        }
+        if indexPath.item > 0{
+            let previousMessage = messages[indexPath.item - 1] as JSQMessage
+            if previousMessage.senderId == message.senderId {
+                return(0.0)
+            }
+        }
+        return kJSQMessagesCollectionViewCellLabelHeightDefault
     }
-    
-    // Same as previous sender, skip
-    if indexPath.item > 0 {
-    let previousMessage = messages[indexPath.item - 1];
-    if previousMessage.sender == message.sender {
-    return CGFloat(0.0)
-    }
-    }
-    
-    return kJSQMessagesCollectionViewCellLabelHeightDefault
-    }
-    */
     
     
     @IBAction func back(sender: AnyObject) {

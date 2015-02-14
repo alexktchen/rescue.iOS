@@ -32,95 +32,95 @@ class StorageService{
         //uploadImage()
     }
     
-    func loadData() {
+    func containerExistAndCreate(userId: String, completion: (isExist: Bool)-> Void){
         
-        self.tableContainers!.readWithCompletion({
-            (results: [AnyObject]!, totalCount: Int!, error: NSError!) -> Void in
+        let containerName = "container=\(userId)"
+
+        
+        self.tableContainers?.readWithQueryString(containerName, completion: {(results:[AnyObject]!, totalCount: Int!, error: NSError!) -> Void in
             
-            if (error != nil){
-                println(error)
+            if(totalCount == -1){
+                
+                completion(isExist: false)
             }
-            
-            
-            var json = JSON(results!)
-            
-            for (key: String, subJson: JSON) in json {
-                
-                println(subJson["name"].string)
-                
-                let name = "container=" + subJson["name"].string!
-                
-                
-                self.tableBlobBlobs!.readWithCompletion({
-                    (results: [AnyObject]!, totalCount: Int!, error: NSError!) -> Void in
-                    
-                    println(results)
-                    
-                })
-                
+            else{
+                completion(isExist: true)
             }
+
+        })
+
+    }
+    
+    
+    func insertContainers(userId: String, completion: (name: String)-> Void){
+        
+        let item: NSDictionary = ["containerName":"\(userId)"]
+        let params: NSDictionary = ["isPublic": "\(NSNumber(bool: true))"]
+        
+        self.tableContainers?.insert(item, parameters: params, completion: {
+            (results:[NSObject : AnyObject]!, error: NSError!) -> Void in
+            var json = JSON(results)
+            println(json)
         })
     }
     
-    func loadContainer(){
-        
-        let name = "container=qqq"
-        
-        self.tableBlobBlobs?.readWithQueryString(name, completion: ({
-            (results: [AnyObject]!, totalCount: Int!, error: NSError!) -> Void in
-            
-            println(results)
-        }))
-    }
-    
-    func uploadImage(image:UIImage, hud: MBProgressHUD){
+    func uploadImage(image:UIImage, hud: MBProgressHUD , completion: (url: String) -> Void){
         
         let data: NSData = UIImagePNGRepresentation(image)
-        
         let item: NSDictionary = NSDictionary()
-        let params: NSDictionary = ["containerName":"qqq","blobName":"0000000000"]
 
+     
+        let dateFormatter = NSDateFormatter()
+   
+        dateFormatter.dateStyle = .LongStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        
+        dateFormatter.dateFormat = "yyyyMMddhhmmsss"
+        let fileName = dateFormatter.stringFromDate(NSDate())
+        
+        let params: NSDictionary = ["containerName":"qqq","blobName":"\(fileName)"]
+        
         self.tableBlobBlobs?.insert(item, parameters: params, completion: { (results:[NSObject : AnyObject]!, error: NSError!) -> Void in
             
-          
             if(error == nil){
+                
                 var json = JSON(results)
                 
                 let sasUrl = json["sasUrl"].string
-                
+               
                 let request = NSMutableURLRequest(URL: NSURL(string: sasUrl!)!)
                 
                 request.setValue("image/jpeg", forHTTPHeaderField: "Content-Type")
                 request.HTTPMethod = "PUT"
                 upload(request, data).progress(closure: {
                     (bytesWritten, totalBytesWritten, totalBytesExpectedToWrite) -> Void in
-
+                    println(totalBytesWritten)
                     hud.progress = Float(totalBytesWritten)/Float(totalBytesExpectedToWrite)
-
-                }).responseJSON { (request, response, JSON, error) in
-                 
+                    
+                }).responseJSON { (request, response, json, error) in
+                    
                     if(error == nil){
-                        println(JSON)
-                        println(response)
-                        hud.hide(true)
+
+                        let strUrl = "http://recusemobilestorage.blob.core.windows.net/qqq/" + fileName
+                        
+                        completion(url: strUrl)
+                        println(request)
+                        
+                        println(json)
                     }
                     else{
                         println(error)
                     }
                     
-                    hud.hide(true)
+                    completion(url: "")
                 }
-
             }
             else{
                 println(error)
             }
             
         })
-        
-        
-        
-        
     }
-
+    
 }

@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7205A1001A8253360003BEDD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A0FF1A8253360003BEDD /* SwiftyJSON.swift */; };
-		7205A1041A82557F0003BEDD /* HTTPRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A1031A82557F0003BEDD /* HTTPRequestSerializer.swift */; };
-		7205A1081A8255890003BEDD /* HTTPResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A1051A8255890003BEDD /* HTTPResponseSerializer.swift */; };
-		7205A1091A8255890003BEDD /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A1061A8255890003BEDD /* HTTPTask.swift */; };
-		7205A10A1A8255890003BEDD /* HTTPUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A1071A8255890003BEDD /* HTTPUpload.swift */; };
 		7205A10C1A8256990003BEDD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A10B1A8256990003BEDD /* DataManager.swift */; };
 		721DC9441A7FB9450035C1C0 /* SettingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */; };
 		725D02621A8266B80020951D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725D02611A8266B80020951D /* Alamofire.swift */; };
@@ -73,10 +69,6 @@
 		1C39CBD2F9FE903E2534FDFB /* Pods-RescueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RescueTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RescueTests/Pods-RescueTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38A2D4AD0B1633215C799724 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7205A0FF1A8253360003BEDD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
-		7205A1031A82557F0003BEDD /* HTTPRequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPRequestSerializer.swift; sourceTree = "<group>"; };
-		7205A1051A8255890003BEDD /* HTTPResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponseSerializer.swift; sourceTree = "<group>"; };
-		7205A1061A8255890003BEDD /* HTTPTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
-		7205A1071A8255890003BEDD /* HTTPUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPUpload.swift; sourceTree = "<group>"; };
 		7205A10B1A8256990003BEDD /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDetailViewController.swift; sourceTree = "<group>"; };
 		725D02611A8266B80020951D /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
@@ -148,17 +140,6 @@
 				7205A0FF1A8253360003BEDD /* SwiftyJSON.swift */,
 			);
 			name = SwiftyJSON;
-			sourceTree = "<group>";
-		};
-		7205A1021A82556D0003BEDD /* SwiftHTTP */ = {
-			isa = PBXGroup;
-			children = (
-				7205A1051A8255890003BEDD /* HTTPResponseSerializer.swift */,
-				7205A1061A8255890003BEDD /* HTTPTask.swift */,
-				7205A1071A8255890003BEDD /* HTTPUpload.swift */,
-				7205A1031A82557F0003BEDD /* HTTPRequestSerializer.swift */,
-			);
-			name = SwiftHTTP;
 			sourceTree = "<group>";
 		};
 		72475B0B1A83B14A00DA90A1 /* Alamofire */ = {
@@ -279,7 +260,6 @@
 			isa = PBXGroup;
 			children = (
 				72475B0B1A83B14A00DA90A1 /* Alamofire */,
-				7205A1021A82556D0003BEDD /* SwiftHTTP */,
 				7205A1011A82533D0003BEDD /* SwiftyJSON */,
 				72E57D1D1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.h */,
 				72E57D1E1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.m */,
@@ -520,13 +500,9 @@
 				72E57D1F1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.m in Sources */,
 				7205A10C1A8256990003BEDD /* DataManager.swift in Sources */,
 				72972E991A7D504E0003ECA9 /* SettingViewController.swift in Sources */,
-				7205A1041A82557F0003BEDD /* HTTPRequestSerializer.swift in Sources */,
 				72A7B1EA1A7E535B00B5577B /* CalloutDirectionsView.swift in Sources */,
-				7205A10A1A8255890003BEDD /* HTTPUpload.swift in Sources */,
-				7205A1081A8255890003BEDD /* HTTPResponseSerializer.swift in Sources */,
 				727159CC1A79D22300DC220A /* ViewController.swift in Sources */,
 				72A7B1E81A7E532600B5577B /* CustomAnnotation.swift in Sources */,
-				7205A1091A8255890003BEDD /* HTTPTask.swift in Sources */,
 				72F0B96A1A7BECCC00D86931 /* Message.xcdatamodeld in Sources */,
 				72E52DE91A7A0029001D89D9 /* Message.swift in Sources */,
 				72F0E40F1A7A819A001A3BAE /* UIColor+BFPaperColors.m in Sources */,

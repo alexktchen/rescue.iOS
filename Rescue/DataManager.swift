@@ -44,9 +44,11 @@ public class DataManager {
     }
     
     //上傳求救訊號
-    class func PostRescueInfo(data: NSObject) {
+    class func PostRescueInfo(lat: Double,long: Double, photourl: String) {
    
-        let json:JSON =  ["id":"123", "xAddr":"11","yAddr":"11","rescueTime":"\(NSDate())","photoUrl":"","videoUrl":""]
+        var uuid = NSUUID().UUIDString
+        
+        let json:JSON =  ["id":"\(uuid)", "xAddr":"\(lat)","yAddr":"\(long)","rescueTime":"\(NSDate())","photoUrl":"\(photourl)","videoUrl":""]
     
         request(.POST, baseUrl + "api/rescueInfo", parameters: json.dictionaryObject, encoding: ParameterEncoding.JSON).responseJSON {
             (request, response, JSON, error) in
