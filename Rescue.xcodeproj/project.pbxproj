@@ -11,6 +11,7 @@
 		7205A10C1A8256990003BEDD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A10B1A8256990003BEDD /* DataManager.swift */; };
 		721DC9441A7FB9450035C1C0 /* SettingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */; };
 		725D02621A8266B80020951D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725D02611A8266B80020951D /* Alamofire.swift */; };
+		726BF0B71A9192A200DDFB84 /* MessageSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726BF0B61A9192A200DDFB84 /* MessageSendView.swift */; };
 		727159CA1A79D22300DC220A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727159C91A79D22300DC220A /* AppDelegate.swift */; };
 		727159CC1A79D22300DC220A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727159CB1A79D22300DC220A /* ViewController.swift */; };
 		727159CF1A79D22300DC220A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 727159CD1A79D22300DC220A /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		72EB5FE91A7B5DA7003E86BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EB5FE81A7B5DA7003E86BA /* MapKit.framework */; };
 		72EB5FEB1A7B5DD2003E86BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EB5FEA1A7B5DD2003E86BA /* CoreLocation.framework */; };
 		72EB5FED1A7B5DDF003E86BA /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EB5FEC1A7B5DDF003E86BA /* MessagesViewController.swift */; };
+		72EF63001A90FB890082FF1A /* SendCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EF62FF1A90FB890082FF1A /* SendCardViewController.swift */; };
+		72EF630B1A9107600082FF1A /* SendMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72EF630A1A9107600082FF1A /* SendMessageView.xib */; };
 		72F0B96A1A7BECCC00D86931 /* Message.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 72F0B9681A7BECCC00D86931 /* Message.xcdatamodeld */; };
 		72F0E40C1A7A813A001A3BAE /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F0E40B1A7A813A001A3BAE /* BFPaperButton.m */; };
 		72F0E40F1A7A819A001A3BAE /* UIColor+BFPaperColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F0E40E1A7A819A001A3BAE /* UIColor+BFPaperColors.m */; };
@@ -72,6 +75,7 @@
 		7205A10B1A8256990003BEDD /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDetailViewController.swift; sourceTree = "<group>"; };
 		725D02611A8266B80020951D /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		726BF0B61A9192A200DDFB84 /* MessageSendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSendView.swift; sourceTree = "<group>"; };
 		727159C41A79D22200DC220A /* Rescue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rescue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		727159C81A79D22200DC220A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		727159C91A79D22300DC220A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 		72EB5FE81A7B5DA7003E86BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		72EB5FEA1A7B5DD2003E86BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		72EB5FEC1A7B5DDF003E86BA /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		72EF62FF1A90FB890082FF1A /* SendCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCardViewController.swift; sourceTree = "<group>"; };
+		72EF630A1A9107600082FF1A /* SendMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendMessageView.xib; sourceTree = "<group>"; };
 		72F0B9691A7BECCC00D86931 /* Message.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Message.xcdatamodel; sourceTree = "<group>"; };
 		72F0E40A1A7A813A001A3BAE /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperButton.h; sourceTree = "<group>"; };
 		72F0E40B1A7A813A001A3BAE /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperButton.m; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 				721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */,
 				727159CB1A79D22300DC220A /* ViewController.swift */,
 				72E5405F1A8B5C8200CFE002 /* CameraViewController.swift */,
+				72EF62FF1A90FB890082FF1A /* SendCardViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -252,6 +259,7 @@
 				727159D21A79D22300DC220A /* LaunchScreen.xib */,
 				727159D01A79D22300DC220A /* Images.xcassets */,
 				727159CD1A79D22300DC220A /* Main.storyboard */,
+				72EF630A1A9107600082FF1A /* SendMessageView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 				72A7B1E71A7E532600B5577B /* CustomAnnotation.swift */,
 				72A7B1E51A7E532000B5577B /* CustomAnnotationView.swift */,
 				72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */,
+				726BF0B61A9192A200DDFB84 /* MessageSendView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -414,6 +423,7 @@
 			files = (
 				727159CF1A79D22300DC220A /* Main.storyboard in Resources */,
 				727159D41A79D22300DC220A /* LaunchScreen.xib in Resources */,
+				72EF630B1A9107600082FF1A /* SendMessageView.xib in Resources */,
 				72A7B1EC1A7E53D800B5577B /* CalloutDirectionsView.xib in Resources */,
 				727159D11A79D22300DC220A /* Images.xcassets in Resources */,
 			);
@@ -506,6 +516,7 @@
 				72F0B96A1A7BECCC00D86931 /* Message.xcdatamodeld in Sources */,
 				72E52DE91A7A0029001D89D9 /* Message.swift in Sources */,
 				72F0E40F1A7A819A001A3BAE /* UIColor+BFPaperColors.m in Sources */,
+				72EF63001A90FB890082FF1A /* SendCardViewController.swift in Sources */,
 				72EB5FE71A7B5C41003E86BA /* MapViewController.swift in Sources */,
 				72E3A32E1A87AAA10081AD03 /* StorageService.swift in Sources */,
 				72A7B1E61A7E532000B5577B /* CustomAnnotationView.swift in Sources */,
@@ -514,6 +525,7 @@
 				721DC9441A7FB9450035C1C0 /* SettingDetailViewController.swift in Sources */,
 				72F0E40C1A7A813A001A3BAE /* BFPaperButton.m in Sources */,
 				72E52DE41A79FFFD001D89D9 /* ASHSpringyCollectionViewFlowLayout.m in Sources */,
+				726BF0B71A9192A200DDFB84 /* MessageSendView.swift in Sources */,
 				725D02621A8266B80020951D /* Alamofire.swift in Sources */,
 				72EB5FED1A7B5DDF003E86BA /* MessagesViewController.swift in Sources */,
 				727159CA1A79D22300DC220A /* AppDelegate.swift in Sources */,

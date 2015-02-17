@@ -32,7 +32,7 @@ class SessionService : NSObject {
     
     init(name:String){
         
-        peerID = MCPeerID(displayName: "Anonymous\(UIDevice.currentDevice().identifierForVendor.UUIDString)")
+        peerID = MCPeerID(displayName: "\(UIDevice.currentDevice().identifierForVendor.UUIDString)")
         
         // Create the session that peers will be invited/join into.
         // You can provide an optinal security identity for custom authentication.
@@ -85,9 +85,7 @@ class SessionService : NSObject {
     func sendPhoto(post : JSQMessage){
         let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(post)
         var error : NSError?
-        
-        
-         session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Unreliable, error: &error)
+        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Unreliable, error: &error)
     }
     
     func send(post : JSQMessage){
@@ -107,7 +105,7 @@ class SessionService : NSObject {
             println("Yeahhh message sent")
         }
     }
-
+    
 }
 
 class SessionDelegate: NSObject, MCSessionDelegate {
@@ -117,8 +115,7 @@ class SessionDelegate: NSObject, MCSessionDelegate {
     var ChangesState:(Int) -> Void
     
     var Browsing:()->Void
-    
-    
+
     let sessionService:SessionService
     
     init(sessionService:SessionService){
@@ -141,14 +138,20 @@ class SessionDelegate: NSObject, MCSessionDelegate {
         self.sessionService = sessionService
     }
     
+    func removeObject<T : Equatable>(object: T, inout fromArray array: [T])
+    {
+        var index = find(array, object)
+        array.removeAtIndex(index!)
+    }
+    
     // Remote peer changed state
     func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState){
         
         println("Remote peer changed state - Connected to someone :-) -> \(peerID.displayName)  state: \(state)")
+        println("--------------------------------------------------------")
         
         if state == MCSessionState.Connected {
             self.ChangesState(self.sessionService.inviteePeople.count)
-            
             println("Yeahhh someone to talk to -> \(peerID?.displayName)")
         }
         if state == MCSessionState.Connecting {
@@ -157,16 +160,30 @@ class SessionDelegate: NSObject, MCSessionDelegate {
             println("Connecting to -> \(peerID?.displayName)")
         }
         if state == MCSessionState.NotConnected {
+            
+            if sessionService.inviteePeople.count > 0{
+                
+                let people =  sessionService.inviteePeople.filter { $0 == peerID }
+                
+                var index = find(sessionService.inviteePeople, people[0])
+                
+                self.sessionService.inviteePeople.removeAtIndex(index!)
+                
+                println(self.sessionService.inviteePeople.count)
+                
+                println("NotConnected to -> \(peerID?.displayName)")
+                
+                self.ChangesState(session.connectedPeers.count)
+            }
+
             self.ChangesState(session.connectedPeers.count)
-            println("NotConnected to -> \(peerID?.displayName)")
+            
         }
     }
     
     // Received data from remote peer
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!){
         println("Received data from remote peer")
-        
-        //        let msg:String = NSString(data:data, encoding:NSUTF8StringEncoding)
         self.handler(data)
     }
     
@@ -193,9 +210,6 @@ class SessionDelegate: NSObject, MCSessionDelegate {
         }
         
     }
-    
-    
-    
 }
 
 class AdvertiserDelegate: NSObject, MCNearbyServiceAdvertiserDelegate{

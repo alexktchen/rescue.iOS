@@ -253,7 +253,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="667" y="613"/>
+            <point key="canvasLocation" x="548" y="613"/>
+        </scene>
+        <!--Send Card View Controller-->
+        <scene sceneID="hMW-wa-nvc">
+            <objects>
+                <viewController restorationIdentifier="SendCardView" storyboardIdentifier="SendCardView" id="1HC-C5-gsi" customClass="SendCardViewController" customModule="Rescue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jxo-uD-lJ3"/>
+                        <viewControllerLayoutGuide type="bottom" id="1ZH-5m-hhj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pmP-rX-Lrb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Amf-qY-D6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="548" y="1241"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vyT-Q9-d4D">

@@ -13,6 +13,8 @@ pod 'AzureSDK-iOS', '~> 1.1'
 
 pod 'MBProgressHUD', '~> 0.8'
 
+pod 'KSCardView', '~> 1.2'
+
 target :RescueTests, :exclusive => true do
     pod 'OCMock'
 end

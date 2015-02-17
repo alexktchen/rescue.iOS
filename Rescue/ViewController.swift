@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -105,7 +105,23 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
 
         switch indexPath.item{
         case 0:
-            view = storyboard.instantiateViewControllerWithIdentifier("MessageView") as? UIViewController
+           
+            view = storyboard.instantiateViewControllerWithIdentifier("SendCardView") as? UIViewController
+            view?.modalPresentationStyle=UIModalPresentationStyle.OverFullScreen
+           
+           
+            let popoverPresentationViewController = view?.popoverPresentationController
+            popoverPresentationViewController?.permittedArrowDirections = .Any
+            popoverPresentationViewController?.delegate = self
+            popoverPresentationController?.sourceRect = self.view.frame
+            presentViewController(view!, animated: true, completion: nil)
+            
+            //self.presentViewController(SendCardViewController(), animated: true, completion: nil)
+            
+          
+           // view = storyboard.instantiateViewControllerWithIdentifier("SendCardView") as? UIViewController
+            
+            //view = storyboard.instantiateViewControllerWithIdentifier("MessageView") as? UIViewController
             break
         case 1:
             break
@@ -121,12 +137,19 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
             break
         }
         
+        /*
+        
         if view != nil{
             layout.makeAllCellsFlyOffScreenInDirection(BRASpringyCollectionViewFlowLayoutDirection.Down, completionBlock: {
-                self.navigationController?.pushViewController(view!, animated: true)
+                //self.navigationController?.presentationController(
+                
+                self.presentViewController(view!, animated: true, completion: nil)
+                //self.navigationController?.pushViewController(view!, animated: true)
                 collectionView.alpha = 0
             })
         }
+*/
+
     }
 }
 
