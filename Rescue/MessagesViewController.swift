@@ -379,7 +379,7 @@ class MessagesViewController: JSQMessagesViewController, CLLocationManagerDelega
             let mlong =  self.locationManager.location.coordinate.longitude
             
             //-----------Todo----------------////
-            //DataManager.PostRescueInfo(mlat, long: mlong, photourl: url)
+            DataManager.PostRescueInfo(mlat, long: mlong, photourl: url)
             hud.hide(true)
         })
         
