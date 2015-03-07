@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet var collectionView: UICollectionView!
     
@@ -35,13 +35,13 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
     
     override func viewWillAppear(animated: Bool) {
         
-         // self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        // self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
         //  self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         // self.navigationController?.navigationBar.shadowImage = UIImage()
         
-       self.navigationItem.title = "Rescue"
+        self.navigationItem.title = "求救自救平台"
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -49,7 +49,7 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(true)
-
+        
         self.collectionView.reloadData()
         collectionView.alpha = 0
         layout.moveVisibleAttributesOffscreenAndSpringIntoPositionWithExtraDragDistance(400, fromDirection: BRASpringyCollectionViewFlowLayoutDirection.Down, startBlock: nil)
@@ -74,17 +74,17 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
         case 0:
             cell?.tintColor = UIColor(red: 244/255, green: 0, blue: 9/255, alpha: 1)
             cell?.setTitle("求救")
-             cell?.setImage("my-topic")
+            cell?.setImage("my-topic")
             break
         case 1:
             cell?.tintColor = UIColor(red: 252/255, green: 143/255, blue: 46/255, alpha: 1)
             cell?.setTitle("尋找訊號")
-             cell?.setImage("near-me")
+            cell?.setImage("near-me")
             break
         case 2:
             cell?.tintColor = UIColor(red: 3/255, green: 149/255, blue: 60/255, alpha: 1)
             cell?.setTitle("救難點")
-             cell?.setImage("geo-fence")
+            cell?.setImage("geo-fence")
             break
         case 3:
             cell?.tintColor = UIColor(red: 61/255, green: 148/255, blue: 179/255, alpha: 1)
@@ -102,31 +102,81 @@ class ViewController: UIViewController,UICollectionViewDelegateFlowLayout, UICol
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         var view : UIViewController?
-
+        
         switch indexPath.item{
         case 0:
-            view = storyboard.instantiateViewControllerWithIdentifier("MessageView") as? UIViewController
+            
+            view = storyboard.instantiateViewControllerWithIdentifier("SendCardView") as? UIViewController
+            view?.modalPresentationStyle=UIModalPresentationStyle.OverFullScreen
+            
+            
+            let popoverPresentationViewController = view?.popoverPresentationController
+            popoverPresentationViewController?.permittedArrowDirections = .Any
+            popoverPresentationViewController?.delegate = self
+            popoverPresentationController?.sourceRect = self.view.frame
+            presentViewController(view!, animated: true, completion: nil)
+            
+            //self.presentViewController(SendCardViewController(), animated: true, completion: nil)
+            
+            
+            // view = storyboard.instantiateViewControllerWithIdentifier("SendCardView") as? UIViewController
+            
+            //view = storyboard.instantiateViewControllerWithIdentifier("MessageView") as? UIViewController
             break
         case 1:
+            
+            view = storyboard.instantiateViewControllerWithIdentifier("ReeciveCardView") as? UIViewController
+            view?.modalPresentationStyle=UIModalPresentationStyle.OverFullScreen
+            
+            
+            let popoverPresentationViewController = view?.popoverPresentationController
+            popoverPresentationViewController?.permittedArrowDirections = .Any
+            popoverPresentationViewController?.delegate = self
+            popoverPresentationController?.sourceRect = self.view.frame
+            presentViewController(view!, animated: true, completion: nil)
+            
+            
             break
             
         case 2:
             view = storyboard.instantiateViewControllerWithIdentifier("MapView") as? UIViewController
+            
+            
+            if view != nil{
+                layout.makeAllCellsFlyOffScreenInDirection(BRASpringyCollectionViewFlowLayoutDirection.Down, completionBlock: {
+                    self.navigationController?.pushViewController(view!, animated: true)
+                    collectionView.alpha = 0
+                })
+            }
+            
             break
         case 3:
             view = storyboard.instantiateViewControllerWithIdentifier("SettingView") as? UIViewController
+            if view != nil{
+                layout.makeAllCellsFlyOffScreenInDirection(BRASpringyCollectionViewFlowLayoutDirection.Down, completionBlock: {
+                    self.navigationController?.pushViewController(view!, animated: true)
+                    collectionView.alpha = 0
+                })
+            }
             break
             
         default:
             break
         }
         
+        /*
+        
         if view != nil{
-            layout.makeAllCellsFlyOffScreenInDirection(BRASpringyCollectionViewFlowLayoutDirection.Down, completionBlock: {
-                self.navigationController?.pushViewController(view!, animated: true)
-                collectionView.alpha = 0
-            })
+        layout.makeAllCellsFlyOffScreenInDirection(BRASpringyCollectionViewFlowLayoutDirection.Down, completionBlock: {
+        //self.navigationController?.presentationController(
+        
+        self.presentViewController(view!, animated: true, completion: nil)
+        //self.navigationController?.pushViewController(view!, animated: true)
+        collectionView.alpha = 0
+        })
         }
+        */
+        
     }
 }
 

@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7203E9841A9E04EE003B524B /* AvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203E9831A9E04EE003B524B /* AvatarView.xib */; };
+		7203E9861A9E0A5A003B524B /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7203E9851A9E0A5A003B524B /* AvatarView.swift */; };
 		7205A1001A8253360003BEDD /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A0FF1A8253360003BEDD /* SwiftyJSON.swift */; };
 		7205A10C1A8256990003BEDD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7205A10B1A8256990003BEDD /* DataManager.swift */; };
 		721DC9441A7FB9450035C1C0 /* SettingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */; };
 		725D02621A8266B80020951D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725D02611A8266B80020951D /* Alamofire.swift */; };
+		72656FF01AA757AE0069DA57 /* RescuePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72656FEF1AA757AE0069DA57 /* RescuePhotoView.swift */; };
+		726BF0B71A9192A200DDFB84 /* MessageSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726BF0B61A9192A200DDFB84 /* MessageSendView.swift */; };
 		727159CA1A79D22300DC220A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727159C91A79D22300DC220A /* AppDelegate.swift */; };
 		727159CC1A79D22300DC220A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727159CB1A79D22300DC220A /* ViewController.swift */; };
 		727159CF1A79D22300DC220A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 727159CD1A79D22300DC220A /* Main.storyboard */; };
@@ -22,6 +26,7 @@
 		72A7B1E81A7E532600B5577B /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A7B1E71A7E532600B5577B /* CustomAnnotation.swift */; };
 		72A7B1EA1A7E535B00B5577B /* CalloutDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A7B1E91A7E535B00B5577B /* CalloutDirectionsView.swift */; };
 		72A7B1EC1A7E53D800B5577B /* CalloutDirectionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A7B1EB1A7E53D800B5577B /* CalloutDirectionsView.xib */; };
+		72E1033E1A9FB620005A2664 /* SearchIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E1033D1A9FB620005A2664 /* SearchIndicator.swift */; };
 		72E3A32E1A87AAA10081AD03 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E3A32D1A87AAA10081AD03 /* StorageService.swift */; };
 		72E52DD81A79FE0E001D89D9 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */; };
 		72E52DDA1A79FFAC001D89D9 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DD91A79FFAC001D89D9 /* Reachability.swift */; };
@@ -30,13 +35,20 @@
 		72E52DE91A7A0029001D89D9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E52DE71A7A0029001D89D9 /* Message.swift */; };
 		72E540601A8B5C8200CFE002 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E5405F1A8B5C8200CFE002 /* CameraViewController.swift */; };
 		72E57D1F1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E57D1E1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.m */; };
+		72E98E911A97BBC200CE72B2 /* PhotoSendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E98E901A97BBC200CE72B2 /* PhotoSendView.swift */; };
+		72E98E931A97BC4D00CE72B2 /* SendPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E98E921A97BC4D00CE72B2 /* SendPhotoView.xib */; };
+		72EA85211AA2F9C000394945 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EA85201AA2F9C000394945 /* Location.swift */; };
+		72EA85231AA3167A00394945 /* MessageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EA85221AA3167A00394945 /* MessageCard.swift */; };
 		72EB5FE71A7B5C41003E86BA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EB5FE61A7B5C41003E86BA /* MapViewController.swift */; };
 		72EB5FE91A7B5DA7003E86BA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EB5FE81A7B5DA7003E86BA /* MapKit.framework */; };
 		72EB5FEB1A7B5DD2003E86BA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EB5FEA1A7B5DD2003E86BA /* CoreLocation.framework */; };
 		72EB5FED1A7B5DDF003E86BA /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EB5FEC1A7B5DDF003E86BA /* MessagesViewController.swift */; };
+		72EF63001A90FB890082FF1A /* SendCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EF62FF1A90FB890082FF1A /* SendCardViewController.swift */; };
+		72EF630B1A9107600082FF1A /* SendMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72EF630A1A9107600082FF1A /* SendMessageView.xib */; };
 		72F0B96A1A7BECCC00D86931 /* Message.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 72F0B9681A7BECCC00D86931 /* Message.xcdatamodeld */; };
 		72F0E40C1A7A813A001A3BAE /* BFPaperButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F0E40B1A7A813A001A3BAE /* BFPaperButton.m */; };
 		72F0E40F1A7A819A001A3BAE /* UIColor+BFPaperColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 72F0E40E1A7A819A001A3BAE /* UIColor+BFPaperColors.m */; };
+		72FD86651A973178004CCFB0 /* ReceiveCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FD86641A973178004CCFB0 /* ReceiveCardViewController.swift */; };
 		9599C2A61AE23F657D649F1B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89E3B97CA97347975ED86C0A /* libPods.a */; };
 		D7C5B582AF56FC90F482312A /* libPods-RescueTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9209E3B9CCD3D596C80DE1C /* libPods-RescueTests.a */; };
 /* End PBXBuildFile section */
@@ -68,10 +80,14 @@
 		0EC9B5D5758836EF588183F1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		1C39CBD2F9FE903E2534FDFB /* Pods-RescueTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RescueTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RescueTests/Pods-RescueTests.debug.xcconfig"; sourceTree = "<group>"; };
 		38A2D4AD0B1633215C799724 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7203E9831A9E04EE003B524B /* AvatarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvatarView.xib; sourceTree = "<group>"; };
+		7203E9851A9E0A5A003B524B /* AvatarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7205A0FF1A8253360003BEDD /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		7205A10B1A8256990003BEDD /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDetailViewController.swift; sourceTree = "<group>"; };
 		725D02611A8266B80020951D /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
+		72656FEF1AA757AE0069DA57 /* RescuePhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RescuePhotoView.swift; sourceTree = "<group>"; };
+		726BF0B61A9192A200DDFB84 /* MessageSendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSendView.swift; sourceTree = "<group>"; };
 		727159C41A79D22200DC220A /* Rescue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rescue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		727159C81A79D22200DC220A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		727159C91A79D22300DC220A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +103,7 @@
 		72A7B1E71A7E532600B5577B /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		72A7B1E91A7E535B00B5577B /* CalloutDirectionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutDirectionsView.swift; sourceTree = "<group>"; };
 		72A7B1EB1A7E53D800B5577B /* CalloutDirectionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalloutDirectionsView.xib; sourceTree = "<group>"; };
+		72E1033D1A9FB620005A2664 /* SearchIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchIndicator.swift; sourceTree = "<group>"; };
 		72E3A32D1A87AAA10081AD03 /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		72E52DD91A79FFAC001D89D9 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -98,15 +115,22 @@
 		72E5405F1A8B5C8200CFE002 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		72E57D1D1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRASpringyCollectionViewFlowLayout.h; path = Rescue/BRASpringyCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		72E57D1E1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRASpringyCollectionViewFlowLayout.m; path = Rescue/BRASpringyCollectionViewFlowLayout.m; sourceTree = "<group>"; };
+		72E98E901A97BBC200CE72B2 /* PhotoSendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSendView.swift; sourceTree = "<group>"; };
+		72E98E921A97BC4D00CE72B2 /* SendPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendPhotoView.xib; sourceTree = "<group>"; };
+		72EA85201AA2F9C000394945 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		72EA85221AA3167A00394945 /* MessageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCard.swift; sourceTree = "<group>"; };
 		72EB5FE61A7B5C41003E86BA /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		72EB5FE81A7B5DA7003E86BA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		72EB5FEA1A7B5DD2003E86BA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		72EB5FEC1A7B5DDF003E86BA /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		72EF62FF1A90FB890082FF1A /* SendCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCardViewController.swift; sourceTree = "<group>"; };
+		72EF630A1A9107600082FF1A /* SendMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendMessageView.xib; sourceTree = "<group>"; };
 		72F0B9691A7BECCC00D86931 /* Message.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Message.xcdatamodel; sourceTree = "<group>"; };
 		72F0E40A1A7A813A001A3BAE /* BFPaperButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFPaperButton.h; sourceTree = "<group>"; };
 		72F0E40B1A7A813A001A3BAE /* BFPaperButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFPaperButton.m; sourceTree = "<group>"; };
 		72F0E40D1A7A819A001A3BAE /* UIColor+BFPaperColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BFPaperColors.h"; sourceTree = "<group>"; };
 		72F0E40E1A7A819A001A3BAE /* UIColor+BFPaperColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BFPaperColors.m"; sourceTree = "<group>"; };
+		72FD86641A973178004CCFB0 /* ReceiveCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveCardViewController.swift; sourceTree = "<group>"; };
 		89E3B97CA97347975ED86C0A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC1E53BC94A2A573BB8F01F5 /* Pods-RescueTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RescueTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RescueTests/Pods-RescueTests.release.xcconfig"; sourceTree = "<group>"; };
 		C9209E3B9CCD3D596C80DE1C /* libPods-RescueTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RescueTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +255,9 @@
 				721DC9431A7FB9450035C1C0 /* SettingDetailViewController.swift */,
 				727159CB1A79D22300DC220A /* ViewController.swift */,
 				72E5405F1A8B5C8200CFE002 /* CameraViewController.swift */,
+				72EF62FF1A90FB890082FF1A /* SendCardViewController.swift */,
+				72FD86641A973178004CCFB0 /* ReceiveCardViewController.swift */,
+				72656FEF1AA757AE0069DA57 /* RescuePhotoView.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -252,6 +279,9 @@
 				727159D21A79D22300DC220A /* LaunchScreen.xib */,
 				727159D01A79D22300DC220A /* Images.xcassets */,
 				727159CD1A79D22300DC220A /* Main.storyboard */,
+				72EF630A1A9107600082FF1A /* SendMessageView.xib */,
+				72E98E921A97BC4D00CE72B2 /* SendPhotoView.xib */,
+				7203E9831A9E04EE003B524B /* AvatarView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -286,6 +316,8 @@
 			children = (
 				72E52DE71A7A0029001D89D9 /* Message.swift */,
 				72F0B9681A7BECCC00D86931 /* Message.xcdatamodeld */,
+				72EA85201AA2F9C000394945 /* Location.swift */,
+				72EA85221AA3167A00394945 /* MessageCard.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -298,6 +330,10 @@
 				72A7B1E71A7E532600B5577B /* CustomAnnotation.swift */,
 				72A7B1E51A7E532000B5577B /* CustomAnnotationView.swift */,
 				72E52DD71A79FE0E001D89D9 /* CollectionViewCell.swift */,
+				726BF0B61A9192A200DDFB84 /* MessageSendView.swift */,
+				72E98E901A97BBC200CE72B2 /* PhotoSendView.swift */,
+				7203E9851A9E0A5A003B524B /* AvatarView.swift */,
+				72E1033D1A9FB620005A2664 /* SearchIndicator.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -414,6 +450,9 @@
 			files = (
 				727159CF1A79D22300DC220A /* Main.storyboard in Resources */,
 				727159D41A79D22300DC220A /* LaunchScreen.xib in Resources */,
+				72EF630B1A9107600082FF1A /* SendMessageView.xib in Resources */,
+				72E98E931A97BC4D00CE72B2 /* SendPhotoView.xib in Resources */,
+				7203E9841A9E04EE003B524B /* AvatarView.xib in Resources */,
 				72A7B1EC1A7E53D800B5577B /* CalloutDirectionsView.xib in Resources */,
 				727159D11A79D22300DC220A /* Images.xcassets in Resources */,
 			);
@@ -498,27 +537,36 @@
 			files = (
 				7205A1001A8253360003BEDD /* SwiftyJSON.swift in Sources */,
 				72E57D1F1A7A3C6D001F9201 /* BRASpringyCollectionViewFlowLayout.m in Sources */,
+				7203E9861A9E0A5A003B524B /* AvatarView.swift in Sources */,
 				7205A10C1A8256990003BEDD /* DataManager.swift in Sources */,
 				72972E991A7D504E0003ECA9 /* SettingViewController.swift in Sources */,
+				72656FF01AA757AE0069DA57 /* RescuePhotoView.swift in Sources */,
 				72A7B1EA1A7E535B00B5577B /* CalloutDirectionsView.swift in Sources */,
 				727159CC1A79D22300DC220A /* ViewController.swift in Sources */,
+				72FD86651A973178004CCFB0 /* ReceiveCardViewController.swift in Sources */,
 				72A7B1E81A7E532600B5577B /* CustomAnnotation.swift in Sources */,
 				72F0B96A1A7BECCC00D86931 /* Message.xcdatamodeld in Sources */,
 				72E52DE91A7A0029001D89D9 /* Message.swift in Sources */,
 				72F0E40F1A7A819A001A3BAE /* UIColor+BFPaperColors.m in Sources */,
+				72EF63001A90FB890082FF1A /* SendCardViewController.swift in Sources */,
 				72EB5FE71A7B5C41003E86BA /* MapViewController.swift in Sources */,
 				72E3A32E1A87AAA10081AD03 /* StorageService.swift in Sources */,
 				72A7B1E61A7E532000B5577B /* CustomAnnotationView.swift in Sources */,
+				72E1033E1A9FB620005A2664 /* SearchIndicator.swift in Sources */,
 				72E540601A8B5C8200CFE002 /* CameraViewController.swift in Sources */,
 				72E52DDC1A79FFB2001D89D9 /* SessionService.swift in Sources */,
 				721DC9441A7FB9450035C1C0 /* SettingDetailViewController.swift in Sources */,
 				72F0E40C1A7A813A001A3BAE /* BFPaperButton.m in Sources */,
+				72E98E911A97BBC200CE72B2 /* PhotoSendView.swift in Sources */,
+				72EA85211AA2F9C000394945 /* Location.swift in Sources */,
 				72E52DE41A79FFFD001D89D9 /* ASHSpringyCollectionViewFlowLayout.m in Sources */,
+				726BF0B71A9192A200DDFB84 /* MessageSendView.swift in Sources */,
 				725D02621A8266B80020951D /* Alamofire.swift in Sources */,
 				72EB5FED1A7B5DDF003E86BA /* MessagesViewController.swift in Sources */,
 				727159CA1A79D22300DC220A /* AppDelegate.swift in Sources */,
 				72E52DDA1A79FFAC001D89D9 /* Reachability.swift in Sources */,
 				72E52DD81A79FE0E001D89D9 /* CollectionViewCell.swift in Sources */,
+				72EA85231AA3167A00394945 /* MessageCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +695,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/cktalex/Documents/Project/iOS-MobileServices-Storage/source/end/StorageDemo",
@@ -655,6 +705,7 @@
 				INFOPLIST_FILE = Rescue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Rescue-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -666,6 +717,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/cktalex/Documents/Project/iOS-MobileServices-Storage/source/end/StorageDemo",
@@ -674,6 +727,7 @@
 				INFOPLIST_FILE = Rescue/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Rescue-Bridging-Header.h";
 			};
 			name = Release;

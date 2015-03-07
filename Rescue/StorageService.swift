@@ -112,8 +112,6 @@ class StorageService{
                     else{
                         println(error)
                     }
-                    
-                    completion(url: "")
                 }
             }
             else{

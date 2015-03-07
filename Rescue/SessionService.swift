@@ -7,61 +7,79 @@
 //
 
 import Foundation
-
 import MultipeerConnectivity
-
 
 class SessionService : NSObject {
     
     let peerID: MCPeerID
     let session: MCSession
-    let advertiser: MCNearbyServiceAdvertiser
-    let serviceBrowser: MCNearbyServiceBrowser
     
+    var serviceAdvertiser: MCNearbyServiceAdvertiser?
+    var serviceBrowser: MCNearbyServiceBrowser?
+   
     //delegates
     let sessionDelegate: SessionDelegate!
-    let advertiserDelegate: AdvertiserDelegate!
-    let serviceBrowserDelegate: ServiceBrowserDelegate!
+    var serviceAdvertiserDelegate: AdvertiserDelegate?
+    var serviceBrowserDelegate: ServiceBrowserDelegate?
     
     //config stuff
-    let serviceType = "ramdom"
+    let serviceType = "rescue"
     let info = ["key":"value"]
     
     
     var inviteePeople:[MCPeerID] = []
     
     init(name:String){
-        
-        peerID = MCPeerID(displayName: "Anonymous\(UIDevice.currentDevice().identifierForVendor.UUIDString)")
-        
-        // Create the session that peers will be invited/join into.
+
+       // peerID = MCPeerID(displayName: "\(UIDevice.currentDevice().identifierForVendor.UUIDString)")
+        self.peerID = MCPeerID(displayName: name)
+
         // You can provide an optinal security identity for custom authentication.
         // Also you can set the encryption preference for the session.
-        session = MCSession(peer: peerID)
-        
-        advertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: info, serviceType: serviceType)
-        
-        serviceBrowser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
-        
+        self.session = MCSession(peer: peerID)
+
         super.init()
-        
-        serviceBrowserDelegate = ServiceBrowserDelegate(session: session, myPeerID: peerID, sessionService: self)
-        serviceBrowser.delegate = serviceBrowserDelegate
-        
-        sessionDelegate = SessionDelegate(sessionService: self)
-        session.delegate = sessionDelegate?
-        
-        advertiserDelegate = AdvertiserDelegate(mySession: session, sessionService: self)
-        advertiser.delegate = advertiserDelegate
-        
-        advertiser.startAdvertisingPeer()
-        
+
+        self.sessionDelegate = SessionDelegate(sessionService: self)
+        self.session.delegate = sessionDelegate?
+
     }
     
+    func startBrowsing(){
+        self.serviceBrowser = MCNearbyServiceBrowser(peer: peerID, serviceType: serviceType)
+        self.serviceBrowserDelegate = ServiceBrowserDelegate(session: session, myPeerID: peerID, sessionService: self)
+        self.serviceBrowser?.delegate = serviceBrowserDelegate
+        self.serviceBrowser?.startBrowsingForPeers()
+    }
+    
+    func startAdvertising(){
+        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: peerID, discoveryInfo: info, serviceType: serviceType)
+        self.serviceAdvertiserDelegate = AdvertiserDelegate(mySession: session, sessionService: self)
+        self.serviceAdvertiser?.delegate = serviceAdvertiserDelegate
+        self.serviceAdvertiser?.startAdvertisingPeer()
+    }
+    
+    func stopBrowsing(){
+        self.serviceBrowser?.stopBrowsingForPeers()
+    }
+    
+    func stopAdvertising(){
+        self.serviceAdvertiser?.stopAdvertisingPeer()
+    }
+    
+    func disconnect(){
+        self.serviceAdvertiser?.stopAdvertisingPeer()
+        self.serviceBrowser?.stopBrowsingForPeers()
+        self.serviceAdvertiser?.delegate = nil
+        self.serviceBrowser?.delegate = nil
+        self.inviteePeople.removeAll(keepCapacity: false)
+        self.session.disconnect()
+        self.session.delegate = nil
+    }
+    
+    
     func onReceive(newHandler:(NSData) -> Void){
-        
         sessionDelegate.handler = newHandler
-        
     }
     
     func onBrowsing(newHandler:()-> Void){
@@ -70,24 +88,39 @@ class SessionService : NSObject {
     
     func onChangesStatue(newHandler:(NSInteger) -> Void){
         sessionDelegate.ChangesState = newHandler
-        
     }
     
-    func start() {
-        serviceBrowser.startBrowsingForPeers()
+    func onConnected(newHandler:(String)-> Void){
+        sessionDelegate.Connected = newHandler
     }
     
-    func stop(){
-        serviceBrowser.stopBrowsingForPeers()
+    func onNotConnected(newHandler:(String)-> Void){
+        sessionDelegate.NotConnected = newHandler
     }
     
-    
+
     func sendPhoto(post : JSQMessage){
         let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(post)
         var error : NSError?
+        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Unreliable, error: &error)
+    }
+    
+    func sendCard(post : MessageCard){
+        // Send a data message to a list of destination peers
+        let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(post)
         
+        var error : NSError?
         
-         session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Unreliable, error: &error)
+        println("The connectedPeer count is \(session.connectedPeers.count)")
+        
+        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+        
+        if let actualError = error {
+            println("An Error Occurred: \(actualError)")
+        }
+        else{
+            println("Yeahhh message sent")
+        }
     }
     
     func send(post : JSQMessage){
@@ -107,7 +140,27 @@ class SessionService : NSObject {
             println("Yeahhh message sent")
         }
     }
-
+    
+    
+    
+    func send(string: String){
+        // Send a data message to a list of destination peers
+        let data:NSData = NSKeyedArchiver.archivedDataWithRootObject(string)
+        
+        var error : NSError?
+        
+        println("The connectedPeer count is \(session.connectedPeers.count)")
+        
+        session.sendData(data, toPeers: session.connectedPeers, withMode: MCSessionSendDataMode.Reliable, error: &error)
+        
+        if let actualError = error {
+            println("An Error Occurred: \(actualError)")
+        }
+        else{
+            println("Yeahhh message sent")
+        }
+    }
+    
 }
 
 class SessionDelegate: NSObject, MCSessionDelegate {
@@ -116,57 +169,72 @@ class SessionDelegate: NSObject, MCSessionDelegate {
     
     var ChangesState:(Int) -> Void
     
+    var Connected:(String) -> Void
+    
+    var NotConnected:(String) -> Void
+    
     var Browsing:()->Void
-    
-    
+
     let sessionService:SessionService
     
     init(sessionService:SessionService){
-        handler = {
-            (text) -> Void in
+        
+        handler = {(text) -> Void in
             println("No handler defined.. so using default !")
         }
         
-        ChangesState = {
-            (text)-> Void in
-            print("No ChangesState")
-        }
+        ChangesState = {(text)-> Void in }
         
-        Browsing = {
-            (text)-> Void in
-            print("No Browsing")
-            
-        }
+        Browsing = {(text)-> Void in }
+        
+        Connected = {(text) -> Void in }
+        
+        NotConnected = {(text) -> Void in}
         
         self.sessionService = sessionService
+    }
+
+    func removeObject<T : Equatable>(object: T, inout fromArray array: [T])
+    {
+        var index = find(array, object)
+        array.removeAtIndex(index!)
     }
     
     // Remote peer changed state
     func session(session: MCSession!, peer peerID: MCPeerID!, didChangeState state: MCSessionState){
         
-        println("Remote peer changed state - Connected to someone :-) -> \(peerID.displayName)  state: \(state)")
-        
-        if state == MCSessionState.Connected {
-            self.ChangesState(self.sessionService.inviteePeople.count)
+  
+        switch state{
             
-            println("Yeahhh someone to talk to -> \(peerID?.displayName)")
-        }
-        if state == MCSessionState.Connecting {
+        case MCSessionState.Connecting:
+            println("Browsing")
             self.Browsing()
+            break
             
-            println("Connecting to -> \(peerID?.displayName)")
+        case MCSessionState.Connected:
+            
+            let name = peerID?.displayName
+            println("Connected")
+            self.Connected(name!)
+            
+            break
+        case MCSessionState.NotConnected:
+            println("NotConnected")
+            self.NotConnected("")
+            println("inviteePeople count: \(self.sessionService.inviteePeople.count)")
+            sessionService.inviteePeople.removeAll(keepCapacity: false)
+            break
+
+        default:
+            break
+            
         }
-        if state == MCSessionState.NotConnected {
-            self.ChangesState(session.connectedPeers.count)
-            println("NotConnected to -> \(peerID?.displayName)")
-        }
+
     }
     
     // Received data from remote peer
     func session(session: MCSession!, didReceiveData data: NSData!, fromPeer peerID: MCPeerID!){
         println("Received data from remote peer")
-        
-        //        let msg:String = NSString(data:data, encoding:NSUTF8StringEncoding)
         self.handler(data)
     }
     
@@ -193,9 +261,6 @@ class SessionDelegate: NSObject, MCSessionDelegate {
         }
         
     }
-    
-    
-    
 }
 
 class AdvertiserDelegate: NSObject, MCNearbyServiceAdvertiserDelegate{
@@ -206,6 +271,7 @@ class AdvertiserDelegate: NSObject, MCNearbyServiceAdvertiserDelegate{
     init(mySession:MCSession, sessionService:SessionService){
         session = mySession
         self.sessionService = sessionService
+       // sessionService.inviteePeople.removeAll(keepCapacity: false)
     }
     
     // Incoming invitation request.  Call the invitationHandler block with YES and a valid session to connect the inviting peer to the session.
@@ -214,6 +280,8 @@ class AdvertiserDelegate: NSObject, MCNearbyServiceAdvertiserDelegate{
         println("advertiser ! -> Always says YES !!!")
         
         //always say yes !
+        println(peerID.displayName)
+        
         invitationHandler(true, session)
         sessionService.inviteePeople.append(peerID)
         
@@ -242,6 +310,7 @@ class ServiceBrowserDelegate: NSObject, MCNearbyServiceBrowserDelegate {
         self.session = session
         self.myPeerID = myPeerID
         self.sessionService = sessionService
+        self.sessionService.inviteePeople.removeAll(keepCapacity: false)
     }
     
     // Found a nearby advertising peer
@@ -252,15 +321,18 @@ class ServiceBrowserDelegate: NSObject, MCNearbyServiceBrowserDelegate {
             println("I have found myself :-)")
         }
         var invitedCount = sessionService.inviteePeople.filter { $0 == peerID }.count
+        
         println("The invited count for peer \(peerID.displayName) was \(invitedCount)")
+        
         if peerID?.displayName != myPeerID.displayName && invitedCount == 0 {
             
             println("I have found SOMEONE ELSE :-) ... inviting ! > displayName: \(peerID?.displayName)")
             
             browser?.invitePeer(peerID, toSession: session, withContext: nil, timeout: inviteTimeout)
-            
+           
         }
     }
+    
     
     // A nearby peer has stopped advertising
     func browser(browser: MCNearbyServiceBrowser!, lostPeer peerID: MCPeerID!){

@@ -6,6 +6,7 @@
 
 #import "JSQMessages.h"
 #import "JSQMessageData.h"
+#import "KSCardView.h"
 
 #import "ASHSpringyCollectionViewFlowLayout.h"
 #import "BRASpringyCollectionViewFlowLayout.h"
