@@ -14,9 +14,13 @@ import UIKit
  
     var view: UIView!
     
+    @IBOutlet weak var main: UIView!
+    @IBOutlet weak var text: UITextView!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setup()
     }
 
@@ -34,10 +38,11 @@ import UIKit
         let bundle = NSBundle(forClass: self.dynamicType)
         let nib = UINib(nibName: "SendMessageView", bundle: bundle)
         let view = nib.instantiateWithOwner(self, options: nil)[0] as UIView
-        
         return view
     }
-    
-    
  
 }
+
+
+
+

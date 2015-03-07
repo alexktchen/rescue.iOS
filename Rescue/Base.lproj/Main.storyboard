@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KoF-Fv-YqC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KoF-Fv-YqC">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
+        <!--Rescue Photo View-->
+        <scene sceneID="dFp-gU-XCP">
+            <objects>
+                <viewController restorationIdentifier="RescuePhotoView" storyboardIdentifier="RescuePhotoView" id="tt1-Ba-L0p" customClass="RescuePhotoView" customModule="Rescue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="E5b-om-bNg"/>
+                        <viewControllerLayoutGuide type="bottom" id="9uE-VM-0Ul"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Fbd-Co-pGZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yL2-Rg-nUT">
+                                <rect key="frame" x="-16" y="-34" width="336" height="602"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="yL2-Rg-nUT" id="Mms-vo-MV6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RnI-Bl-yuK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-164" y="2"/>
+        </scene>
         <!--Map View Controller-->
         <scene sceneID="99T-2I-CIx">
             <objects>
@@ -267,13 +293,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="gTq-hE-ttn" appends="YES" id="Rdb-sf-kDK"/>
+                        </connections>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Amf-qY-D6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gTq-hE-ttn">
+                    <connections>
+                        <action selector="tap:" destination="1HC-C5-gsi" id="hBW-Ha-rCX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="548" y="1241"/>
+        </scene>
+        <!--Receive Card View Controller-->
+        <scene sceneID="NW9-2Z-w5E">
+            <objects>
+                <viewController restorationIdentifier="ReeciveCardView" storyboardIdentifier="ReeciveCardView" id="JL3-5x-BSW" customClass="ReceiveCardViewController" customModule="Rescue" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iRc-Uv-JdU"/>
+                        <viewControllerLayoutGuide type="bottom" id="3t2-fH-yIM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UwT-sC-xIB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8db-is-3ZT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="1241"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vyT-Q9-d4D">

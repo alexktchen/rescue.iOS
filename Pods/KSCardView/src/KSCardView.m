@@ -176,10 +176,60 @@ static BOOL s_hasDownOverlay = NO;
 {
     self.layer.opacity = 0.0f;
     self.center = CGPointMake(self.superview.center.x, 1.5 * self.superview.frame.size.height);
+    [UIView animateWithDuration:0.3f animations:^{
+        self.layer.opacity = 1.0f;
+        self.center = self.originalCenter;
+    }];
+}
+
+-(void)hideToTop
+{
+    self.layer.opacity = 1.0f;
+    self.center = self.originalCenter;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.layer.opacity = 1.0f;
+        self.center =  CGPointMake(self.superview.center.x, -400);
+        
+    }completion:^ (BOOL finished)
+     {
+         if(finished) {
+             [self _cardLeaves:DirectionUp withRotation:NO];
+             [self.delegate cardDidLeaveTopEdge:self];
+         }
+         
+     }];
+
+}
+
+-(void)hideToBtoom
+{
+    self.layer.opacity = 1.0f;
+    self.center = self.originalCenter;
+    
+    [UIView animateWithDuration:0.3f animations:^{
+        self.layer.opacity = 0.0f;
+        self.center =  CGPointMake(self.superview.center.x, 1.5 * self.superview.frame.size.height);
+    }];
+}
+
+-(void) moveWhenHideKeyboard
+{
     [UIView animateWithDuration:0.5f animations:^{
         self.layer.opacity = 1.0f;
         self.center = self.originalCenter;
     }];
+
+}
+
+- (void)moveWhenShowKeyboard
+{
+    [UIView animateWithDuration:0.5f animations:^{
+        self.layer.opacity = 1.0f;
+        CGPoint movekeyboardPoint = CGPointMake(self.center.x, 200);
+        self.center = movekeyboardPoint;
+    }];
+
 }
 
 #pragma mark - Demo Methods
@@ -340,10 +390,12 @@ static BOOL s_hasDownOverlay = NO;
 }
 
 #pragma mark - Touch Handlers
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (touches.count == 1)
     {
+       
 		self.touchCount = 0;
 		[self addSubview:s_overlayContainer];
     }
@@ -351,6 +403,7 @@ static BOOL s_hasDownOverlay = NO;
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
     if (touches.count == 1)
     {
         self.touchCount++;
@@ -529,6 +582,7 @@ static BOOL s_hasDownOverlay = NO;
         // Bouce back
         if (!outRight && !outLeft && !outTop && !outBottom)
         {
+           
             [self _rubberBand];
         }
     }
@@ -536,8 +590,10 @@ static BOOL s_hasDownOverlay = NO;
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+   
     if (touches.count == 1)
     {
+        [self.delegate cardTouchNoMove:self];
         self.touchCount = 0;
         self.firstEdgeHit = YES;
     }
@@ -607,6 +663,7 @@ static BOOL s_hasDownOverlay = NO;
             {
                 isNegative = NO;
                 isVertical = YES;
+               
             }
             else
             {
@@ -660,6 +717,8 @@ static BOOL s_hasDownOverlay = NO;
                          } completion:^(BOOL finished){
                              [UIView animateWithDuration:kRubberBandDuration / 3.0f animations:^{
                                  self.center = self.originalCenter;
+                                 
+                                  [self.delegate cardDidReset:self];
                              }];
                          }];
                      }];

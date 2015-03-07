@@ -16,23 +16,58 @@ let baseUrl = "http://rescueapiservice.azurewebsites.net/"
 public class DataManager {
     
     //取得救難點
-    class func getHelpInfos(success : ((lat: Double!,long:Double,name: String,tel: String) -> Void)) {
+    class func getHelpInfos(success : ((locations: NSMutableArray!) -> Void)) {
         
         request(.GET, baseUrl + "api/helpinfo", parameters: nil).responseJSON { (req, res, json, error) in
             
             if(error == nil) {
                 
                 var json = JSON(json!)
+                let locations :NSMutableArray = NSMutableArray()
+
+                for (key: String, subJson: JSON) in json {
+                    
+                    let location: Location = Location(name: subJson["name"].string!,tel: subJson["tel"].string!, long: subJson["yAddr"].double!, lat: subJson["xAddr"].double!, type: 0)
+                   
+                    locations.addObject(location)
+                }
+
+                success(
+                    locations: locations
+                )
+
+            }
+            else {
+                
+                NSLog("Error: \(error)")
+                println(req)
+                println(res)
+            }
+        }
+    }
+    
+    class func getRescueInfo(success : ((locations: NSMutableArray!) -> Void)) {
+        
+        request(.GET, baseUrl + "api/rescueInfo", parameters: nil).responseJSON { (req, res, json, error) in
+            
+            if(error == nil) {
+                
+                var json = JSON(json!)
+                
+                let locations :NSMutableArray = NSMutableArray()
+                
                 
                 for (key: String, subJson: JSON) in json {
                     
-                    success(
-                        lat: subJson["yAddr"].double,
-                        long: subJson["xAddr"].double!,
-                        name: subJson["name"].string!,
-                        tel: subJson["tel"].string!
-                    )
+                    let location: Location = Location(name: "SOS",tel: subJson["photoUrl"].string!, long: subJson["yAddr"].double!, lat: subJson["xAddr"].double!, type: 1)
+
+                    locations.addObject(location)
                 }
+                
+                success(
+                    locations: locations
+                )
+                
             }
             else {
                 

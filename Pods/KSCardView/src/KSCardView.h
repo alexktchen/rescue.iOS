@@ -208,6 +208,8 @@
 */
 - (void)showFromBottom;
 
+- (void)hideToTop;
+
 /**
  @pre Demo must be reset using demoReset.
  @brief Moves the card from the center of the screen upwards and performs the
@@ -223,6 +225,10 @@
  to the user and explain what it does.
 */
 - (void)demoDown;
+
+-(void)moveWhenHideKeyboard;
+
+-(void)moveWhenShowKeyboard;
 
 /**
  @pre Demo must be reset using demoReset.
@@ -269,6 +275,7 @@
 */
 - (void)leaveBottom;
 
+- (void)hideToBtoom;
 @end
 
 @protocol KSCardViewDelegate
@@ -304,5 +311,9 @@
  @see kHorizontalEdgeOffset
 */
 - (void)cardDidLeaveRightEdge:(KSCardView *)cardView;
+
+- (void)cardDidReset:(KSCardView *)cardView;
+
+- (void)cardTouchNoMove:(KSCardView *)cardView;
 
 @end
